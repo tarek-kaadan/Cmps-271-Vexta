@@ -1,8 +1,7 @@
 .BigDiv {
-    position: relative;
-    z-index: 10;
-    margin-top: -70px;
-    background-color: grey;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     height: 600px;
     weight: 100%;
     display: flex;
@@ -17,6 +16,7 @@
   font-weight: 400;
   font-style: normal;
   font-size: 75px;
+  color: #F7F7F7;
   left: 10%;
 }
 
@@ -31,10 +31,22 @@
 }
 
 .BigDiv button:hover {
-  background: rgba(84, 84, 84, 0.1);
+  background: rgba(84, 84, 84, 0.3);
   border: 1.5px solid white;
   transition: border 0.1s ease
 }
+
+.ImageSlider {
+  position: relative;
+  margin-top: -70px;
+  height: 600px;
+  z-index: 1;
+}
+
+.swiper-pagination-bullet-active {
+  background: linear-gradient(to right, #00B4DB, #0083B0) !important;
+}
+
 @media (max-width: 768px) { 
   .BigDiv {
     align-items: center;

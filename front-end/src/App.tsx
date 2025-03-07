@@ -5,12 +5,12 @@ import Recommendations from "./components/Recommendations";
 import "./index.css";
 import GamesGenre from "./components/GamesGenre";
 import GamesRegion from "./components/GamesRegion";
-import BigImage from "./components/BigImage";
+import ImageSlider from "./components/ImageSlider";
 export default function App() {
   return (
     <>
       <Header />
-      <BigImage />
+      <ImageSlider />
       <Recommendations />
       <GamesGenre />
       <GamesRegion />
