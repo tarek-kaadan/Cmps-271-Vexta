@@ -1,21 +1,20 @@
 export default function Header() {
   return (
     <header>
-      <h1>My website</h1>
+      <h1>Vexta</h1>
       <nav>
         <ul>
           <li>
-            <a href="#"></a>Home
+            <a href="#">Home</a>
           </li>
           <li>
-            <a href="#"></a>About
+            <a href="#">About</a>
           </li>
           <li>
-            <a href="#"></a>Recomendations
+            <a href="#">Recommendations</a>
           </li>
         </ul>
       </nav>
-      <hr></hr>
     </header>
   );
 }

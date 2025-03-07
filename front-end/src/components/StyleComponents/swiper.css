@@ -1,0 +1,72 @@
+@media (min-width: 1024px) {
+    .swiper-button-prev,
+    .swiper-button-next { 
+        display: none !important;
+        visibility: hidden;
+        opacity: 0;
+    }
+
+}
+
+@media (max-width: 1023px) {
+    .swiper-button-prev,
+    .swiper-button-next {
+        display: flex !important;
+        visibility: visible;
+        opacity: 1;
+        color: black;
+    }
+}
+@media (max-width: 480px) {
+    .swiper-button-prev,
+    .swiper-button-next {
+        display: flex !important;
+        visibility: visible;
+        opacity: 1;
+        width: 15px;
+        height: 15px;
+        color: black;
+    }
+}
+.RecomSwiper {
+    position: relative;
+    top: 30px;
+}
+.GenreSwiper {
+    position: relative;
+    top: 30px;
+}
+.RegionSwiper {
+    position: relative;
+    top: 30px;
+    margin-bottom: 60px;
+}
+.RecomTitle {
+    position: relative;
+    top: 30px;
+    text-align: center;
+    font-family: "Jersey 10", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 50px;
+}
+
+.GenreTitle {
+    position: relative;
+    top: 30px;
+    text-align: center;
+    font-family: "Jersey 10", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 50px;
+}
+
+.RegionTitle {
+    position: relative;
+    top: 30px;
+    text-align: center;
+    font-family: "Jersey 10", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 50px;
+}

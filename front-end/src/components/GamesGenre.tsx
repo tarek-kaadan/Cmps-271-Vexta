@@ -7,10 +7,10 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "./StyleComponents/swiper.css";
 
-export default function Recommendation() {
+export default function GamesGenre() {
   return (
     <>
-      <h2 className="RecomTitle">Recommendations</h2>
+      <h2 className="GenreTitle">Games By Genre</h2>
       <Swiper
         modules={[Navigation]}
         spaceBetween={10}
@@ -24,7 +24,7 @@ export default function Recommendation() {
           870: { slidesPerView: 3 },
           1024: { slidesPerView: 4 },
         }}
-        className="RecomSwiper"
+        className="GenreSwiper"
       >
         <SwiperSlide>
           <Card />
