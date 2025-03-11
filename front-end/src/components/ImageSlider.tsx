@@ -11,6 +11,7 @@ export default () => {
   return (
     <Swiper
       modules={[Navigation, Pagination, Autoplay]}
+      className="ImageSlider"
       spaceBetween={50}
       slidesPerView={1}
       navigation
@@ -22,7 +23,6 @@ export default () => {
       pagination={{ clickable: true }}
       onSwiper={(swiper) => console.log(swiper)}
       onSlideChange={() => console.log("slide change")}
-      className="ImageSlider"
     >
       <SwiperSlide>
         <BigImage />

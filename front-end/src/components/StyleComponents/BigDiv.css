@@ -43,6 +43,14 @@
   z-index: 1;
 }
 
+.ImageSlider .swiper-button-prev,
+.ImageSlider .swiper-button-next {
+  visibility: visible !important;
+  opacity: 1 !important;
+  transition: visibility 0.3s, opacity 0.3s; /* Optional: smooth transition */
+}
+
+
 .swiper-pagination-bullet-active {
   background: linear-gradient(to right, #00B4DB, #0083B0) !important;
 }
