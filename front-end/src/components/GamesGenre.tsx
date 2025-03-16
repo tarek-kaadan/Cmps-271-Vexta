@@ -8,6 +8,16 @@ import "swiper/css/navigation";
 import "./StyleComponents/swiper.css";
 
 export default function GamesGenre() {
+  const list = [
+    <Card />,
+    <Card />,
+    <Card />,
+    <Card />,
+    <Card />,
+    <Card />,
+    <Card />,
+    <Card />,
+  ];
   return (
     <>
       <h2 className="GenreTitle">Games By Genre</h2>
@@ -26,30 +36,9 @@ export default function GamesGenre() {
         }}
         className="GenreSwiper"
       >
-        <SwiperSlide>
-          <Card />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Card />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Card />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Card />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Card />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Card />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Card />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Card />
-        </SwiperSlide>
+        {list.map((list, index) => (
+          <SwiperSlide key={index}>{list}</SwiperSlide>
+        ))}
       </Swiper>
     </>
   );

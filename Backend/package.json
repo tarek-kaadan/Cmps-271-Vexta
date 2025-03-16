@@ -1,0 +1,20 @@
+{
+  "name": "vexta",
+  "version": "0.0.1",
+  "description": "Backend for Vexta",
+  "homepage": "https://github.com/TrPro69/Cmps-271-Vexta#readme",
+  "bugs": {
+    "url": "https://github.com/TrPro69/Cmps-271-Vexta/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TrPro69/Cmps-271-Vexta.git"
+  },
+  "license": "ISC",
+  "author": "Foo",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
