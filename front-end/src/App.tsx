@@ -1,12 +1,16 @@
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import LoginPage from "/Users/husseinmarji/Desktop/AUB/CMPS/CMPS 271/Cmps-271-Vexta/front-end/src/components/Login.tsx";
+import SignupPage from "/Users/husseinmarji/Desktop/AUB/CMPS/CMPS 271/Cmps-271-Vexta/front-end/src/components/Signup.tsx";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import Card from "./components/Card";
 import Recommendations from "./components/Recommendations";
-import "./index.css";
 import GamesGenre from "./components/GamesGenre";
 import GamesRegion from "./components/GamesRegion";
 import ImageSlider from "./components/ImageSlider";
-export default function App() {
+import "./index.css";
+
+const Home: React.FC = () => {
   return (
     <>
       <Header />
@@ -17,4 +21,18 @@ export default function App() {
       <Footer />
     </>
   );
-}
+};
+
+const App: React.FC = () => {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/signup" element={<SignupPage />} />
+      </Routes>
+    </BrowserRouter>
+  );
+};
+
+export default App;
