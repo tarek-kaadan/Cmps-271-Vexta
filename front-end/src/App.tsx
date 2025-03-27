@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import LoginPage from "/Users/husseinmarji/Desktop/AUB/CMPS/CMPS 271/Cmps-271-Vexta/front-end/src/components/Login.tsx";
-import SignupPage from "/Users/husseinmarji/Desktop/AUB/CMPS/CMPS 271/Cmps-271-Vexta/front-end/src/components/Signup.tsx";
+import LoginPage from "./components/Login";
+import SignupPage from "./components/Signup";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Recommendations from "./components/Recommendations";
