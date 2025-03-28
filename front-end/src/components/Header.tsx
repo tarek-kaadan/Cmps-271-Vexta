@@ -1,20 +1,59 @@
+import { Link } from "react-router-dom";
+
 export default function Header() {
   return (
-    <header>
-      <h1>Vexta</h1>
+    <header style={{ 
+      display: "flex", 
+      justifyContent: "space-between", 
+      alignItems: "center", 
+      padding: "15px 30px", 
+      position: "absolute",
+      width: "100%",
+      top: 0,
+      left: 0,
+      background: "transparent", 
+      color: "white"
+    }}>
+      {/* Left: Logo */}
+      <h1 style={{ margin: 0, fontSize: "35px", fontWeight: "bold" }}>Vexta</h1>
+
+      {/* Center: Navigation Links */}
       <nav>
-        <ul>
+        <ul style={{ 
+          display: "flex", 
+          listStyle: "none", 
+          gap: "25px", 
+          margin: 0, 
+          padding: 0 
+        }}>
           <li>
-            <a href="#">Home</a>
+            <Link to="/" style={{ color: "white", textDecoration: "none", fontSize: "18px" }}>Home</Link>
           </li>
           <li>
-            <a href="#">About</a>
+            <Link to="/about" style={{ color: "white", textDecoration: "none", fontSize: "18px" }}>About</Link>
           </li>
           <li>
-            <a href="#">Recommendations</a>
+            <Link to="/recommendations" style={{ color: "white", textDecoration: "none", fontSize: "18px" }}>Recommendations</Link>
           </li>
         </ul>
       </nav>
+
+      {/* Right: Auth Buttons */}
+      <div>
+        <Link to="/login" style={{ 
+          color: "cyan", 
+          textDecoration: "none", 
+          fontWeight: "bold", 
+          marginRight: "15px",
+          fontSize: "18px"
+        }}>Login</Link>
+        <Link to="/signup" style={{ 
+          color: "orange", 
+          textDecoration: "none", 
+          fontWeight: "bold", 
+          fontSize: "18px"
+        }}>Sign Up</Link>
+      </div>
     </header>
   );
 }
