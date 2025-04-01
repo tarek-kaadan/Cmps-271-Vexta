@@ -8,6 +8,8 @@ import Recommendations from "./components/Recommendations";
 import GamesGenre from "./components/GamesGenre";
 import GamesRegion from "./components/GamesRegion";
 import ImageSlider from "./components/ImageSlider";
+import FriendSearch from "./components/FriendSearch";
+import FriendsList from "./components/FriendList";
 import "./index.css";
 
 const Home: React.FC = () => {
@@ -30,6 +32,8 @@ const App: React.FC = () => {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
+        <Route path="/friends" element={<FriendSearch />} />
+        <Route path="/my-friends" element={<FriendsList />} />
       </Routes>
     </BrowserRouter>
   );

@@ -25,6 +25,7 @@ const LoginPage: React.FC = () => {
       if (response.status === 200) {
         setSuccess("Login successful! Redirecting...");
         localStorage.setItem("token", response.data.token);
+        localStorage.setItem("userId", response.data.userId);
         setTimeout(() => navigate("/"), 1500);
       }
     } catch (err: any) {
