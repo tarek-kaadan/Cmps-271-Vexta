@@ -1,24 +1,14 @@
-const { default: chalk } = require("chalk")
-const express = require("express")
-const app = express()
+const chalk = require('chalk');
+const mongoose = require('mongoose');
 
-app.get("/game.api", (req, res) =>{
-    res.json(gameCards =
-          {
-            id: 1,
-            title: "Cyberpunk 2077",
-            imageUrl: "https://example.com/cyberpunk2077.jpg",
-            description: "Futuristic RPG set in Night City.",
-            rating: 4.5
-          },
-          {
-            id: 2,
-            title: "The Witcher 3",
-            imageUrl: "https://example.com/witcher3.jpg",
-            description: "Fantasy RPG about Geralt of Rivia.",
-            rating: 4.9
-          }
-    )
-})
+const connectDB = async () => {
+  try {
+    mongoose.set('strictQuery', false);
+    const conn = await mongoose.connect(process.env.MONGO_URI);
+    console.log(chalk.green(`✅ Database connected: ${conn.connection.host}`));
+  } catch (error) {
+    console.log(chalk.red("❌ MongoDB connection error:", error));
+  }
+};
 
-app.listen(5000, () => {console.log("server started at port 5000")})
+module.exports = connectDB;
