@@ -34,12 +34,13 @@ const FriendSearch: React.FC = () => {
       }
   
       const response = await axios.post(`http://localhost:5000/api/users/${userId}/add-friend`, {
-        friendId,
+        friendId: friendId,
       });
   
       console.log("Friend added:", response.data);
   
-      // Optional: update UI / disable button after success
+      // ✅ Update local state to disable the button or show a success message
+      setFriends((prev) => [...prev, friendId]);
     } catch (err) {
       console.error("Error adding friend:", err);
     }

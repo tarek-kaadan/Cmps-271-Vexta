@@ -21,26 +21,28 @@ exports.getAllUsers = async (req, res) => {
   };  
   
 
-  exports.addFriend = async (req, res) => {
-    const { id } = req.params;
-    const { friendId } = req.body;
-  
-    try {
-      const user = await User.findById(id);
-      const friend = await User.findById(friendId);
-  
-      if (!user || !friend) return res.status(404).json({ message: "User not found" });
-  
-      if (user.friends.includes(friendId)) {
-        return res.status(400).json({ message: "Already friends" });
-      }
-  
+// controllers/userController.js
+exports.addFriend = async (req, res) => {
+  const { userId } = req.params;
+  const { friendId } = req.body;
+
+  try {
+    const user = await User.findById(userId);
+    const friend = await User.findById(friendId);
+
+    if (!user || !friend) {
+      return res.status(404).json({ message: "User or friend not found" });
+    }
+
+    if (!user.friends.includes(friendId)) {
       user.friends.push(friendId);
       await user.save();
-  
-      res.status(200).json({ message: "Friend added!" });
-    } catch (err) {
-      res.status(500).json({ message: "Failed to add friend" });
     }
-  };
+
+    res.status(200).json({ message: "Friend added successfully", user });
+  } catch (error) {
+    console.error("Add friend error:", error);
+    res.status(500).json({ message: "Server error while adding friend" });
+  }
+};  
   

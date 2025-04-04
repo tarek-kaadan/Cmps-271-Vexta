@@ -14,11 +14,10 @@ const PORT = 5000;
 app.use(cors());
 app.use(express.json());
 
-
-app.use("/api/users", authRoutes);
-app.use("/api/users", userRoutes);
-app.use('/api/games', gamesRoutes);
-
+// ✅ Mount separately with unique prefixes
+app.use("/api/auth", authRoutes);     // for login/signup
+app.use("/api/users", userRoutes);    // for friend-related routes
+app.use("/api/games", gamesRoutes);
 
 connectDB().then(() => {
   app.listen(PORT, () => {

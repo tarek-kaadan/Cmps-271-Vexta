@@ -17,21 +17,21 @@ const LoginPage: React.FC = () => {
     setSuccess("");
   
     try {
-      const response = await axios.post("http://localhost:5000/api/users/login", {
+      const response = await axios.post("http://localhost:5000/api/auth/login", {
         email,
         password,
       });
   
       if (response.status === 200) {
         setSuccess("Login successful! Redirecting...");
-        localStorage.setItem("token", response.data.token);
-        localStorage.setItem("userId", response.data.userId);
+        localStorage.setItem("token", response.data.token);      // ✅ Save token
+        localStorage.setItem("userId", response.data.userId);    // ✅ Save userId
         setTimeout(() => navigate("/"), 1500);
       }
     } catch (err: any) {
       setError(err.response?.data?.message || "Login failed. Try again.");
     }
-  };
+  };  
 
   return (
     <div className="auth-container">

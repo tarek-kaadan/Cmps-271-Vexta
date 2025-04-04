@@ -4,6 +4,7 @@ const { getAllUsers, addFriend, getFriends } = require("../controllers/userContr
 
 router.get("/", getAllUsers); // ✅ This is the GET /api/users
 router.get("/:id/friends", getFriends);
-router.post("/add-friend", addFriend);
+// router.post("/add-friend", addFriend);
+router.post("/:userId/add-friend", addFriend);
 
 module.exports = router;
