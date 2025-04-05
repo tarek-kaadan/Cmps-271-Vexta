@@ -1,13 +1,34 @@
+import { useState, useEffect } from "react";
+import axios from "axios";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import BigImage from "./BigImage";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import chalk from "chalk";
+
+interface Game {
+  id: number,
+  title: String,
+  image: String,
+  link: String
+}
 
 export default () => {
+  const[ games, setGames] = useState<Game[]>([]);
+  useEffect(() => {
+    axios
+      .get("")
+      .then((response) =>{
+        setGames(response.data);
+      })
+      .catch((error) => {
+        console.error(chalk.red("Error fetching game data:", error));
+      })
+  }, []);
+  
   return (
     <Swiper
       modules={[Navigation, Pagination, Autoplay]}
@@ -24,18 +45,11 @@ export default () => {
       onSwiper={(swiper) => console.log(swiper)}
       onSlideChange={() => console.log("slide change")}
     >
-      <SwiperSlide>
-        <BigImage />
-      </SwiperSlide>
-      <SwiperSlide>
-        <BigImage />
-      </SwiperSlide>
-      <SwiperSlide>
-        <BigImage />
-      </SwiperSlide>
-      <SwiperSlide>
-        <BigImage />
-      </SwiperSlide>
+      {games.map((game) => (
+        <SwiperSlide key = {game.id}>
+          <BigImage name = {game.title} image = {game.image} link= {game.link}/>
+        </SwiperSlide>
+      ))}
       ...
     </Swiper>
   );

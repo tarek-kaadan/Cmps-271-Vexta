@@ -1,15 +1,20 @@
 import "./StyleComponents/BigDiv.css";
 
-export default function BigImage() {
+interface Props {
+  name: String,
+  image: String,
+  link: String
+}
+
+export default function BigImage({ name, image, link }: Props) {
   return (
     <div
       className="BigDiv"
       style={{
-        backgroundImage:
-          "url(https://www.theloadout.com/wp-content/uploads/2021/08/ghost-of-tsushima-2-everything-we-know.jpg)",
+        backgroundImage: `url(${image})`
       }}
     >
-      <h2>Game Name</h2>
+      <h2>{name}</h2>
       <button>Click here</button>
     </div>
   );

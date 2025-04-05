@@ -14,13 +14,13 @@ const PORT = 5000;
 app.use(cors());
 app.use(express.json());
 
-// ✅ Mount separately with unique prefixes
-app.use("/api/auth", authRoutes);     // for login/signup
-app.use("/api/users", userRoutes);    // for friend-related routes
+
+app.use("/api/auth", authRoutes);     
+app.use("/api/users", userRoutes);    
 app.use("/api/games", gamesRoutes);
 
 connectDB().then(() => {
   app.listen(PORT, () => {
-    console.log(`🚀 Server running at http://localhost:${PORT}`);
+    console.log(`Server running at http://localhost:${PORT}`);
   });
 });
