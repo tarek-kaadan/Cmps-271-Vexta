@@ -1,20 +1,21 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "./FriendSearch.css"; // ✅ Reuse styles
+import "./FriendList.css";
 
-interface Friend {
+interface User {
   _id: string;
   email: string;
 }
 
-const FriendsList: React.FC = () => {
-  const [friends, setFriends] = useState<Friend[]>([]);
-  const userId = localStorage.getItem("userId");
+const FriendList: React.FC = () => {
+  const [friends, setFriends] = useState<User[]>([]);
+  const currentUserId = localStorage.getItem("userId");
 
   useEffect(() => {
     const fetchFriends = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/users/${userId}/friends`);
+        if (!currentUserId) return;
+        const response = await axios.get(`http://localhost:5000/api/users/${currentUserId}/friends`);
         setFriends(response.data);
       } catch (err) {
         console.error("Error fetching friends:", err);
@@ -22,26 +23,47 @@ const FriendsList: React.FC = () => {
     };
 
     fetchFriends();
-  }, [userId]);
+  }, [currentUserId]);
+
+  const handleRemoveFriend = async (friendId: string) => {
+    try {
+      if (!currentUserId) {
+        alert("You must be logged in to remove friends.");
+        return;
+      }
+
+      const response = await axios.post(`http://localhost:5000/api/users/${currentUserId}/remove-friend`, {
+        friendId,
+      });
+
+      console.log("Friend removed:", response.data);
+
+      // Update local list
+      setFriends((prev) => prev.filter((f) => f._id !== friendId));
+    } catch (err) {
+      console.error("Error removing friend:", err);
+    }
+  };
 
   return (
-    <div className="friend-search-page">
-      <h2 className="friend-search-heading">👥 Your Friends</h2>
-
-      {friends.length === 0 ? (
-        <p style={{ textAlign: "center", color: "#666" }}>You haven’t added any friends yet.</p>
-      ) : (
-        <div className="friend-list">
-          {friends.map((friend) => (
+    <div className="friend-list-page">
+      <h2 className="friend-list-heading">👥 Your Friends</h2>
+      <div className="friend-list">
+        {friends.length > 0 ? (
+          friends.map((friend) => (
             <div key={friend._id} className="friend-card">
               <span className="friend-email">{friend.email}</span>
-              <span className="friend-added">✅ Connected</span>
+              <button className="remove-button" onClick={() => handleRemoveFriend(friend._id)}>
+                ❌ Remove Friend
+              </button>
             </div>
-          ))}
-        </div>
-      )}
+          ))
+        ) : (
+          <p className="no-friends-msg">You have no friends yet.</p>
+        )}
+      </div>
     </div>
   );
 };
 
-export default FriendsList;
+export default FriendList;

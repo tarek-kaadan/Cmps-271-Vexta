@@ -1,84 +1,102 @@
 .friend-search-page {
-    padding: 40px 20px;
-    background: #f9f9f9;
-    font-family: "Segoe UI", sans-serif;
-    min-height: 100vh;
-  }
-  
-  .friend-search-heading {
-    font-size: 2rem;
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 30px;
-    color: #222;
-  }
-  
-  .friend-list {
-    max-width: 700px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
-  
-  .friend-card {
-    background-color: #fff;
-    padding: 16px 24px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .friend-email {
-    font-size: 1.1rem;
-    font-weight: 500;
-    color: #333;
-  }
-  
-  .add-friend-button {
-    background-color: #007bff;
-    color: #fff;
-    padding: 8px 16px;
-    border-radius: 6px;
-    border: none;
-    cursor: pointer;
-    font-size: 0.95rem;
-    font-weight: 600;
-  }
-  
-  .friend-added {
-    color: #28a745;
-    font-weight: 600;
-    font-size: 0.95rem;
-  }
-  
-  .friend-search-header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 30px;
-  }
-  
-  .center-button {
-    text-align: center;
-  }
-  
-  .view-friends-button {
-    background-color: #28a745;
-    color: white;
-    padding: 8px 14px;
-    border-radius: 6px;
-    font-weight: 600;
-    font-size: 0.95rem;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .view-friends-button:hover {
-    background-color: #218838;
-  }
-  
+  padding: 40px 20px;
+  max-width: 800px;
+  margin: auto;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.friend-search-heading {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.center-button {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.view-friends-button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.view-friends-button:hover {
+  background-color: #218838;
+}
+
+.friend-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.friend-card {
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.friend-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.friend-email {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #333;
+}
+
+.add-button {
+  background-color: white;
+  color: #28a745;
+  border: 2px solid #28a745;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.add-button:hover {
+  background-color: #28a745;
+  color: white;
+}
+
+.remove-button {
+  background-color: white;
+  color: #dc3545;
+  border: 2px solid #dc3545;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.remove-button:hover {
+  background-color: #dc3545;
+  color: white;
+}
+
+.friend-added {
+  font-size: 0.95rem;
+  color: #28a745;
+  font-weight: bold;
+}
