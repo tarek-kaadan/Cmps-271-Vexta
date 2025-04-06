@@ -4,20 +4,13 @@ interface Props {
   title: string;
   description: string;
   image: string;
-  link: string;
   rating: number;
 }
 
-export default function Card({
-  title,
-  description,
-  image,
-  link,
-  rating,
-}: Props) {
+export default function Card({ title, description, image, rating }: Props) {
   return (
     <Link
-      to={link}
+      to={`/game/${title}`}
       className="card"
       style={{ textDecoration: "none", color: "inherit" }}
     >

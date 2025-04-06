@@ -21,13 +21,13 @@ interface Game {
 
 export default function GamesRegion() {
   const [games, setGames] = useState<Game[]>([]);
-  const [selectedCountry, setSelectedCountry] = useState("All");
+  const [selectedCountry, setSelectedCountry] = useState("Country");
 
-  const countries = ["USA", "Japan"];
+  const countries = ["Country", "USA", "Japan"];
 
   useEffect(() => {
     axios
-      .get("") //api
+      .get("http://localhost:5000/api/games") //api
       .then((response) => {
         setGames(response.data);
       })
@@ -37,7 +37,7 @@ export default function GamesRegion() {
   }, []);
 
   const filteredGames =
-    selectedCountry === "All"
+    selectedCountry === "Country"
       ? games
       : games.filter((game) => game.country === selectedCountry);
 
@@ -77,7 +77,6 @@ export default function GamesRegion() {
               title={game.title}
               description={game.description}
               image={game.image}
-              link={game.link}
               rating={game.rating}
             />
           </SwiperSlide>

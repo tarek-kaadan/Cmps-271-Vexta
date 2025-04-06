@@ -10,6 +10,7 @@ import GamesRegion from "./components/GamesRegion";
 import ImageSlider from "./components/ImageSlider";
 import FriendSearch from "./components/FriendSearch";
 import FriendsList from "./components/FriendList";
+import GameDetail from "./components/GameDetail";
 import "./index.css";
 
 const Home: React.FC = () => {
@@ -34,6 +35,7 @@ const App: React.FC = () => {
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/friends" element={<FriendSearch />} />
         <Route path="/my-friends" element={<FriendsList />} />
+        <Route path="/game/:title" element={<GameDetail />} />
       </Routes>
     </BrowserRouter>
   );

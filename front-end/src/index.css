@@ -15,6 +15,7 @@
 
 .card h2 {
     padding: 10px;
+    font-size: 150%;
     text-align: left;
     margin: 0;
 }
@@ -37,7 +38,7 @@
 
 .rating {
     position: absolute;
-    top: 165px;
+    top: 160px;
     right: 10px;
     height: 30px;
     width: 75px;
@@ -142,11 +143,24 @@ footer h1{
     .card {
         width: 80%;
     }
+    .card h2 {
+        font-size: 140%;
+    }
     header nav {
         visibility: hidden;
     }
 }
-
+@media (max-width: 700px) { 
+    .card {
+        width: 80%;
+    }
+    .card h2 {
+        font-size: 120%;
+    }
+    header nav {
+        visibility: hidden;
+    }
+}
 
 @media (max-width: 638px) { 
     .card {

@@ -11,6 +11,10 @@ const games = new Schema({
         type: String,
         required: true
     },
+    fullDescription: {
+        type: String,
+        required: true
+    },
     category: {
         type: String,
         required: true
@@ -23,7 +27,11 @@ const games = new Schema({
         type: String,
         required: false
     },
-    HowToPlay: {
+    AgeGroup: {
+        type: String,
+        required: true
+    },
+    EstimatedDuration: {
         type: String,
         required: false
     },

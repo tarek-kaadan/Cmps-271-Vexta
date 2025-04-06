@@ -21,12 +21,12 @@ interface Game {
 
 export default function GamesGenre() {
   const [games, setGame] = useState<Game[]>([]);
-  const [selectedGenre, setSelectedGenres] = useState("All");
+  const [selectedGenre, setSelectedGenres] = useState("Genre");
 
-  const genres = ["Open World", "strategy"];
+  const genres = ["Genre", "Open World", "strategy"];
   useEffect(() => {
     axios
-      .get("") //api
+      .get("http://localhost:5000/api/games") //api
       .then((res) => {
         setGame(res.data);
       })
@@ -36,7 +36,7 @@ export default function GamesGenre() {
   }, []);
 
   const FilteredGames =
-    selectedGenre === "All"
+    selectedGenre === "Genre"
       ? games
       : games.filter((game) => selectedGenre === game.genre);
 
@@ -76,7 +76,6 @@ export default function GamesGenre() {
               title={game.title}
               description={game.description}
               image={game.image}
-              link={game.link}
               rating={game.rating}
             />
           </SwiperSlide>

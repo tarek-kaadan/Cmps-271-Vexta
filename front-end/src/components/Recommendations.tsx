@@ -22,7 +22,7 @@ export default function Recommendation() {
   const [games, setGame] = useState<Game[]>([]);
   useEffect(() => {
     axios
-      .get("") //api
+      .get("http://localhost:5000/api/recommendations") //api
       .then((res) => {
         setGame(res.data);
       })
@@ -54,7 +54,6 @@ export default function Recommendation() {
               title={game.title}
               description={game.description}
               image={game.image}
-              link={game.link}
               rating={game.rating}
             />
           </SwiperSlide>

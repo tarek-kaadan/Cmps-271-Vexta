@@ -20,7 +20,7 @@ export default () => {
   const [games, setGames] = useState<Game[]>([]);
   useEffect(() => {
     axios
-      .get("")
+      .get("http://localhost:5000/api/games")
       .then((response) => {
         setGames(response.data);
       })
