@@ -10,25 +10,25 @@ import "swiper/css/pagination";
 import chalk from "chalk";
 
 interface Game {
-  id: number,
-  title: String,
-  image: String,
-  link: String
+  id: number;
+  title: string;
+  image: string;
+  link: string;
 }
 
 export default () => {
-  const[ games, setGames] = useState<Game[]>([]);
+  const [games, setGames] = useState<Game[]>([]);
   useEffect(() => {
     axios
       .get("")
-      .then((response) =>{
+      .then((response) => {
         setGames(response.data);
       })
       .catch((error) => {
         console.error(chalk.red("Error fetching game data:", error));
-      })
+      });
   }, []);
-  
+
   return (
     <Swiper
       modules={[Navigation, Pagination, Autoplay]}
@@ -46,8 +46,8 @@ export default () => {
       onSlideChange={() => console.log("slide change")}
     >
       {games.map((game) => (
-        <SwiperSlide key = {game.id}>
-          <BigImage name = {game.title} image = {game.image} link= {game.link}/>
+        <SwiperSlide key={game.id}>
+          <BigImage name={game.title} image={game.image} link={game.link} />
         </SwiperSlide>
       ))}
       ...

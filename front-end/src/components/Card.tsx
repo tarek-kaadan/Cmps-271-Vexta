@@ -1,18 +1,32 @@
-export default function Card() {
+import { Link } from "react-router-dom";
+
+interface Props {
+  title: string;
+  description: string;
+  image: string;
+  link: string;
+  rating: number;
+}
+
+export default function Card({
+  title,
+  description,
+  image,
+  link,
+  rating,
+}: Props) {
   return (
-    <div className="card">
-      <img
-        src="https://wallpapers.com/images/featured/solid-gra-ew5fya1gh2bgc49b.jpg"
-        alt="Game Picture"
-      ></img>
-      <h2>Game Name</h2>
+    <Link
+      to={link}
+      className="card"
+      style={{ textDecoration: "none", color: "inherit" }}
+    >
+      <img src={image} alt="Game Picture"></img>
+      <h2>{title}</h2>
       <div className="rating">
-        <p>rating</p>
+        <p>{rating}</p>
       </div>
-      <p>
-        John Doe loves to play games from different countries so he decided to
-        hop on Vexta!
-      </p>
-    </div>
+      <p>{description}</p>
+    </Link>
   );
 }

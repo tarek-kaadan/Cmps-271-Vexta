@@ -1,13 +1,35 @@
 import Card from "./Card";
 import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
 import "./StyleComponents/swiper.css";
+import chalk from "chalk";
+
+interface Game {
+  id: number;
+  title: string;
+  description: string;
+  image: string;
+  link: string;
+  rating: number;
+}
 
 export default function Recommendation() {
+  const [games, setGame] = useState<Game[]>([]);
+  useEffect(() => {
+    axios
+      .get("") //api
+      .then((res) => {
+        setGame(res.data);
+      })
+      .catch((error) => {
+        console.log(chalk.red("could not fetch data:", error));
+      });
+  });
   return (
     <>
       <h2 className="RecomTitle">Recommendations</h2>
@@ -26,30 +48,17 @@ export default function Recommendation() {
         }}
         className="RecomSwiper"
       >
-        <SwiperSlide>
-          <Card />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Card />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Card />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Card />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Card />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Card />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Card />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Card />
-        </SwiperSlide>
+        {games.map((game) => (
+          <SwiperSlide key={game.id}>
+            <Card
+              title={game.title}
+              description={game.description}
+              image={game.image}
+              link={game.link}
+              rating={game.rating}
+            />
+          </SwiperSlide>
+        ))}
       </Swiper>
     </>
   );

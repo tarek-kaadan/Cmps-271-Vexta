@@ -5,6 +5,7 @@ const connectDB = require("./server");
 const authRoutes = require("./routes/auth");
 const userRoutes = require("./routes/user");
 const gamesRoutes = require("./routes/game");
+const recommendationRoutes = require("./routes/Recommendations");
 
 dotenv.config();
 
@@ -18,6 +19,7 @@ app.use(express.json());
 app.use("/api/auth", authRoutes);     
 app.use("/api/users", userRoutes);    
 app.use("/api/games", gamesRoutes);
+app.use("/api/recommendations", recommendationRoutes);
 
 connectDB().then(() => {
   app.listen(PORT, () => {
