@@ -21,15 +21,22 @@ interface Game {
 export default function Recommendation() {
   const [games, setGame] = useState<Game[]>([]);
   useEffect(() => {
-    axios
-      .get("http://localhost:5000/api/recommendations") //api
+      const userId = localStorage.getItem("userId");
+      const token = localStorage.getItem("token");
+    
+      if (!userId || !token) return;
+    
+      axios.get(`http://localhost:5000/api/recommendations/${userId}`, {
+        headers: { token: `Bearer ${token}` },
+      })
       .then((res) => {
         setGame(res.data);
       })
       .catch((error) => {
-        console.log(chalk.red("could not fetch data:", error));
+        console.log("could not fetch data:", error);
       });
-  });
+    }, []);
+
   return (
     <>
       <h2 className="RecomTitle">Recommendations</h2>

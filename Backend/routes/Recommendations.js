@@ -14,7 +14,7 @@ router.get("/:userId", verifyToken, async (req, res) => {
         if (!user) return res.status(404).json({ message: "User not found" });
 
         const recommendedGames = await Game.find({
-            category: {$in: user.lovedCategories },
+            category: {$in: user.preferences },
         });
         
         res.json(recommendedGames);
