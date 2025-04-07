@@ -11,6 +11,7 @@ import ImageSlider from "./components/ImageSlider";
 import FriendSearch from "./components/FriendSearch";
 import FriendsList from "./components/FriendList";
 import GameDetail from "./components/GameDetail";
+import ChooseCategories from "./components/ChooseCategories";
 import "./index.css";
 
 const Home: React.FC = () => {
@@ -36,6 +37,7 @@ const App: React.FC = () => {
         <Route path="/friends" element={<FriendSearch />} />
         <Route path="/my-friends" element={<FriendsList />} />
         <Route path="/games/title/:title" element={<GameDetail />} />
+        <Route path="/choose-categories" element={<ChooseCategories />} />
       </Routes>
     </BrowserRouter>
   );

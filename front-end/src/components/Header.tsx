@@ -1,20 +1,38 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 interface HeaderProps {
   className?: string;
 }
 
 export default function Header({ className }: HeaderProps) {
-  const username = localStorage.getItem("username");
-  const isLoggedIn = !!username;
   const navigate = useNavigate();
-  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [username, setUsername] = useState<string | null>(null);
+  const [dropdownOpen, setDropdownOpen] = useState<boolean>(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const storedUsername = localStorage.getItem("username");
+    setUsername(storedUsername || null);
+  }, []);
+
+  // Close dropdown if clicking outside
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(e.target as Node)
+      ) {
+        setDropdownOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("userId");
-    localStorage.removeItem("username");
+    localStorage.clear();
+    setUsername(null);
     setDropdownOpen(false);
     navigate("/login");
   };
@@ -27,8 +45,8 @@ export default function Header({ className }: HeaderProps) {
         justifyContent: "space-between",
         alignItems: "center",
         padding: "15px 30px",
-        position: "relative",
-        backgroundColor: "#111",
+        backgroundColor: "#000",
+        color: "white",
       }}
     >
       <h1 style={{ margin: 0, fontSize: "35px", fontWeight: "bold" }}>Vexta</h1>
@@ -46,11 +64,7 @@ export default function Header({ className }: HeaderProps) {
           <li>
             <Link
               to="/"
-              style={{
-                color: "white",
-                textDecoration: "none",
-                fontSize: "18px",
-              }}
+              style={{ color: "white", textDecoration: "none", fontSize: "18px" }}
             >
               Home
             </Link>
@@ -58,11 +72,7 @@ export default function Header({ className }: HeaderProps) {
           <li>
             <Link
               to="/about"
-              style={{
-                color: "white",
-                textDecoration: "none",
-                fontSize: "18px",
-              }}
+              style={{ color: "white", textDecoration: "none", fontSize: "18px" }}
             >
               About
             </Link>
@@ -70,11 +80,7 @@ export default function Header({ className }: HeaderProps) {
           <li>
             <Link
               to="/recommendations"
-              style={{
-                color: "white",
-                textDecoration: "none",
-                fontSize: "18px",
-              }}
+              style={{ color: "white", textDecoration: "none", fontSize: "18px" }}
             >
               Recommendations
             </Link>
@@ -82,8 +88,65 @@ export default function Header({ className }: HeaderProps) {
         </ul>
       </nav>
 
-      <div style={{ position: "relative" }}>
-        {!isLoggedIn ? (
+      <div ref={dropdownRef} style={{ position: "relative" }}>
+        {username ? (
+          <div>
+            <div
+              onClick={() => setDropdownOpen(prev => !prev)}
+              style={{
+                backgroundColor: "#333",
+                padding: "8px 16px",
+                borderRadius: "20px",
+                fontWeight: "bold",
+                cursor: "pointer",
+                userSelect: "none",
+              }}
+            >
+              {username}
+            </div>
+            {dropdownOpen && (
+              <div
+                style={{
+                  position: "absolute",
+                  top: "110%",
+                  right: 0,
+                  width: "160px",
+                  backgroundColor: "#222",
+                  borderRadius: "6px",
+                  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.4)",
+                  zIndex: 1000,
+                  overflow: "hidden",
+                }}
+              >
+                <Link
+                  to="/friends"
+                  style={{
+                    display: "block",
+                    padding: "10px 15px",
+                    color: "white",
+                    textDecoration: "none",
+                    fontSize: "15px",
+                  }}
+                  onClick={() => setDropdownOpen(false)}
+                >
+                  👥 Friends
+                </Link>
+                <div
+                  onClick={handleLogout}
+                  style={{
+                    padding: "10px 15px",
+                    color: "#ff5555",
+                    fontWeight: "bold",
+                    cursor: "pointer",
+                    fontSize: "15px",
+                  }}
+                >
+                  🚪 Log out
+                </div>
+              </div>
+            )}
+          </div>
+        ) : (
           <div>
             <Link
               to="/login"
@@ -108,55 +171,6 @@ export default function Header({ className }: HeaderProps) {
             >
               Sign Up
             </Link>
-          </div>
-        ) : (
-          <div style={{ position: "relative" }}>
-            <button
-              onClick={() => setDropdownOpen(!dropdownOpen)}
-              style={{
-                color: "white",
-                fontWeight: "bold",
-                fontSize: "16px",
-                backgroundColor: "#333",
-                border: "none",
-                padding: "8px 14px",
-                borderRadius: "8px",
-                cursor: "pointer",
-              }}
-            >
-              👤 {username}
-            </button>
-            {dropdownOpen && (
-              <div
-                style={{
-                  position: "absolute",
-                  top: "110%",
-                  right: 0,
-                  backgroundColor: "#222",
-                  padding: "10px 15px",
-                  borderRadius: "6px",
-                  boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
-                  zIndex: 1000,
-                }}
-              >
-                <button
-                  onClick={handleLogout}
-                  style={{
-                    color: "white",
-                    backgroundColor: "#c0392b",
-                    border: "none",
-                    padding: "8px 14px",
-                    fontSize: "14px",
-                    fontWeight: "bold",
-                    borderRadius: "6px",
-                    cursor: "pointer",
-                    width: "100%",
-                  }}
-                >
-                  🚪 Log Out
-                </button>
-              </div>
-            )}
           </div>
         )}
       </div>
