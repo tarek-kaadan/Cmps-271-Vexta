@@ -55,72 +55,150 @@
 }
 
 header {
-    display: grid;
     position: sticky;
     top: 0;
-    z-index: 9999;      
-    grid-template-columns: 1fr auto 1fr;
-    flex-direction: row;
-    justify-content: center;
-    list-style: none;
-    padding: 10px;
+    z-index: 1000;
     background-color: rgba(84, 84, 84, 0.05);
     backdrop-filter: blur(10px);
-    transition: background 0.3s ease, backdrop-filter 0.3s ease;
-}
-
-header h1 {
-    grid-column: 1;
-    padding-left: 10px;
-    justify-self: start; 
-    font-family: "Jersey 10", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    margin: 0;  
-    color: white;
-}
-  
-header nav {
-    grid-column: 2;
-    justify-self: center; 
-    margin-top: 10px; 
+    padding: 1rem;
   }
-
-nav ul {
+  
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  h1 {
+    font-size: 40px;
+    color: white;
+    margin: 0;
+    font-family: "Jersey 10", sans-serif;
+  }
+  
+  .desktop-nav ul {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
     margin: 0;
     padding: 0;
-    list-style: none;
-    border: none;
-    display: flex;
-    grid-column: 1;
-    flex-direction: row;
-    align-items: center;
-    align-self: center;
-    gap: 20px;
-    list-style: none;
-    padding: 0;
-    border: none;
-}
-
-nav ul li {
-    text-decoration: none;
-    color: black;
-    font-weight: bold;
-    transition: color 0.3s ease-in-out;
-    align-self: center;
-}
-
-nav ul li a {
-    text-decoration: none;
+  }
+  
+  .desktop-nav a {
     color: white;
+    text-decoration: none;
+    font-size: 1.1rem;
+  }
+  
+  .right-section {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .auth-buttons {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .login-btn {
+    color: cyan;
     font-weight: bold;
-    border: none; 
-    outline: none;
+  }
+  
+  .signup-btn {
+    color: orange;
+    font-weight: bold;
   }
 
-nav ul li a:hover {
-    color: black; 
-}
+  .user-dropdown {
+    position: relative;
+  }
+  
+  .username-btn {
+    background: #333;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .dropdown-menu {
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background: #222;
+    border-radius: 6px;
+    padding: 0.5rem;
+    min-width: 160px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .dropdown-menu a, .dropdown-menu button {
+    color: white;
+    padding: 0.5rem;
+    text-align: left;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+
+  .mobile-menu-button {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+  }
+  
+  .mobile-menu {
+    position: fixed;
+    top: 4rem;
+    right: 1rem;
+    background: rgba(40, 40, 40, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 8px;
+    padding: 1rem;
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    z-index: 1001;
+  }
+  
+  .mobile-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .mobile-menu a, .mobile-menu button {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem;
+    display: block;
+  }
+  
+  .mobile-auth {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 1rem;
+  }
+  
 
 footer {
     background: linear-gradient(to top, #D9FC79, #96E6A1);
@@ -139,6 +217,16 @@ footer h1{
     font-size: 50px;
 }
 
+.login-btn, .signup-btn,
+.mobile-menu .auth-buttons a {
+  text-decoration: none !important;
+}
+
+.login-btn:hover, .signup-btn:hover {
+  opacity: 0.8;
+  text-decoration: none !important;
+}
+
 @media (max-width: 768px) { 
     .card {
         width: 80%;
@@ -146,9 +234,17 @@ footer h1{
     .card h2 {
         font-size: 140%;
     }
-    header nav {
-        visibility: hidden;
-    }
+    .desktop-nav, .right-section {
+        display: none;
+      }
+    
+      .mobile-menu-button {
+        display: block;
+      }
+    
+      .header-content {
+        justify-content: space-between;
+      }
 }
 @media (max-width: 700px) { 
     .card {
@@ -157,14 +253,33 @@ footer h1{
     .card h2 {
         font-size: 120%;
     }
-    header nav {
-        visibility: hidden;
-    }
+    .desktop-nav, .right-section {
+        display: none;
+      }
+    
+      .mobile-menu-button {
+        display: block;
+      }
+    
+      .header-content {
+        justify-content: space-between;
+      }
 }
 
 @media (max-width: 638px) { 
     .card {
         width: 60%;
     }
+    .desktop-nav, .right-section {
+        display: none;
+      }
+    
+      .mobile-menu-button {
+        display: block;
+      }
+    
+      .header-content {
+        justify-content: space-between;
+      }
 }
 

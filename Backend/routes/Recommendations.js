@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const verifyToken = require("../middlewares/verifyToken");
 const User = require("../models/User");
-const Game = require("../models/Game");
+const Game = require("../models/game");
 
 router.get("/:userId", verifyToken, async (req, res) => {
     try {

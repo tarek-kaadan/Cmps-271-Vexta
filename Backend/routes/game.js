@@ -1,30 +1,54 @@
 const express = require('express');
 const router = express.Router();
-const Game = require('../models/Game');
+const Game = require('../models/game');
 
-router.post('/', async(req, res) => {
-    try {
-        const {title,  description, category, OriginCountry, numberOfPlayers } = req.body;
+/*function insertPostData () {
+  games.insertMany([
+      {
+          title: "Cyberpunk 2077",
+          description: "V is the best",
+          category: "Open World",
+          OriginCountry: "Poland",
+          numberOfPlayers: 20000
 
-        const newGame = await Game.create({
-            title,
-            description,
-            category,
-            OriginCountry,
-            numberOfPlayers,
-        });
-        res.status(201).json(newGame);
-    }
-    catch (err) {
-        console.log(chalk.red("Error inserting game:", err));
-        res.status(500).json({ error: "Failed to insert game" });
-    }
-})
+      },
+  ])
+}*/
+
+//insertPostData();
+
 
 router.get('/', async (req, res) => {
     const allGames= await Game.find();
     res.json(allGames);
 })
+
+router.get('/AllGames', async (req, res) => {
+  const search = req.query.search || '';
+  const page = parseInt(req.query.page) || 1;
+  const limit = parseInt(req.query.limit) || 6;
+
+  try {
+    const query = {
+      title: { $regex: search, $options: 'i' } 
+    };
+
+    const games = await Game.find(query)
+      .skip((page - 1) * limit)
+      .limit(limit);
+
+    const total = await Game.countDocuments(query);
+
+    res.json({
+      games,
+      currentPage: page,
+      totalPages: Math.ceil(total / limit)
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
 
 router.get('/title/:title', async (req, res) => {
   try {
@@ -55,33 +79,5 @@ router.get('/:id', async (req, res) => {
 });
 
 
-router.patch("/:id", async (req, res) => {
-    try {
-      const { title, description, category, OriginCountry, numberOfPlayers, averageRating, ratingCount } = req.body;
-
-      const updatedGame = await Game.findByIdAndUpdate(
-        req.params.id,
-        {
-          title,
-          description,
-          category,
-          OriginCountry,
-          numberOfPlayers,
-          averageRating,
-          ratingCount,
-        },
-        { new: true }  
-      );
-  
-      if (!updatedGame) {
-        return res.status(404).json({ message: "Game not found" });
-      }
-  
-      res.json(updatedGame);
-    } catch (err) {
-      console.error("Error updating game:", err);
-      res.status(500).json({ message: "Error updating game", error: err });
-    }
-  });
   
 module.exports = router;

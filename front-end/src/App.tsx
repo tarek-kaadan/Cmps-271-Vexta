@@ -13,6 +13,7 @@ import FriendsList from "./components/FriendList";
 import GameDetail from "./components/GameDetail";
 import ChooseCategories from "./components/ChooseCategories";
 import "./index.css";
+import AllGames from "./AllGames";
 
 const Home: React.FC = () => {
   return (
@@ -38,6 +39,7 @@ const App: React.FC = () => {
         <Route path="/my-friends" element={<FriendsList />} />
         <Route path="/games/title/:title" element={<GameDetail />} />
         <Route path="/choose-categories" element={<ChooseCategories />} />
+        <Route path="/All-Games" element={<AllGames />} />
       </Routes>
     </BrowserRouter>
   );

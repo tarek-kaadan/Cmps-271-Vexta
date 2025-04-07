@@ -8,15 +8,16 @@ interface HeaderProps {
 export default function Header({ className }: HeaderProps) {
   const navigate = useNavigate();
   const [username, setUsername] = useState<string | null>(null);
-  const [dropdownOpen, setDropdownOpen] = useState<boolean>(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const storedUsername = localStorage.getItem("username");
     setUsername(storedUsername || null);
   }, []);
 
-  // Close dropdown if clicking outside
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (
@@ -25,10 +26,18 @@ export default function Header({ className }: HeaderProps) {
       ) {
         setDropdownOpen(false);
       }
+      if (
+        isMobileMenuOpen &&
+        mobileMenuRef.current &&
+        !mobileMenuRef.current.contains(e.target as Node) &&
+        !(e.target as Element).closest(".mobile-menu-button")
+      ) {
+        setIsMobileMenuOpen(false);
+      }
     };
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+  }, [isMobileMenuOpen]);
 
   const handleLogout = () => {
     localStorage.clear();
@@ -38,139 +47,108 @@ export default function Header({ className }: HeaderProps) {
   };
 
   return (
-    <header
-      className={className}
-      style={{
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        padding: "15px 30px",
-        backgroundColor: "#000",
-        color: "white",
-      }}
-    >
-      <h1 style={{ margin: 0, fontSize: "35px", fontWeight: "bold" }}>Vexta</h1>
+    <header className={className}>
+      <div className="header-content">
+        <h1>Vexta</h1>
 
-      <nav>
-        <ul
-          style={{
-            display: "flex",
-            listStyle: "none",
-            gap: "25px",
-            margin: 0,
-            padding: 0,
-          }}
-        >
-          <li>
-            <Link
-              to="/"
-              style={{ color: "white", textDecoration: "none", fontSize: "18px" }}
-            >
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/about"
-              style={{ color: "white", textDecoration: "none", fontSize: "18px" }}
-            >
-              About
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/recommendations"
-              style={{ color: "white", textDecoration: "none", fontSize: "18px" }}
-            >
-              Recommendations
-            </Link>
-          </li>
-        </ul>
-      </nav>
+        <nav className="desktop-nav">
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/about">About</Link>
+            </li>
+            <li>
+              <Link to="/All-Games">All Games</Link>
+            </li>
+          </ul>
+        </nav>
 
-      <div ref={dropdownRef} style={{ position: "relative" }}>
-        {username ? (
-          <div>
-            <div
-              onClick={() => setDropdownOpen(prev => !prev)}
-              style={{
-                backgroundColor: "#333",
-                padding: "8px 16px",
-                borderRadius: "20px",
-                fontWeight: "bold",
-                cursor: "pointer",
-                userSelect: "none",
-              }}
-            >
-              {username}
-            </div>
-            {dropdownOpen && (
-              <div
-                style={{
-                  position: "absolute",
-                  top: "110%",
-                  right: 0,
-                  width: "160px",
-                  backgroundColor: "#222",
-                  borderRadius: "6px",
-                  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.4)",
-                  zIndex: 1000,
-                  overflow: "hidden",
-                }}
+        <div className="right-section">
+          {username ? (
+            <div className="user-dropdown" ref={dropdownRef}>
+              <button
+                className="username-btn"
+                onClick={() => setDropdownOpen(!dropdownOpen)}
               >
-                <Link
-                  to="/friends"
-                  style={{
-                    display: "block",
-                    padding: "10px 15px",
-                    color: "white",
-                    textDecoration: "none",
-                    fontSize: "15px",
-                  }}
-                  onClick={() => setDropdownOpen(false)}
-                >
-                  👥 Friends
-                </Link>
-                <div
-                  onClick={handleLogout}
-                  style={{
-                    padding: "10px 15px",
-                    color: "#ff5555",
-                    fontWeight: "bold",
-                    cursor: "pointer",
-                    fontSize: "15px",
-                  }}
-                >
-                  🚪 Log out
+                {username}
+              </button>
+              {dropdownOpen && (
+                <div className="dropdown-menu">
+                  <Link to="/friends" onClick={() => setDropdownOpen(false)}>
+                    👥 Friends
+                  </Link>
+                  <button onClick={handleLogout}>🚪 Log out</button>
                 </div>
-              </div>
-            )}
-          </div>
-        ) : (
-          <div>
-            <Link
-              to="/login"
-              style={{
-                color: "cyan",
-                textDecoration: "none",
-                fontWeight: "bold",
-                marginRight: "15px",
-                fontSize: "18px",
-              }}
-            >
-              Login
-            </Link>
-            <Link
-              to="/signup"
-              style={{
-                color: "orange",
-                textDecoration: "none",
-                fontWeight: "bold",
-                fontSize: "18px",
-              }}
-            >
-              Sign Up
-            </Link>
+              )}
+            </div>
+          ) : (
+            <div className="auth-buttons">
+              <Link to="/login" className="login-btn">
+                Login
+              </Link>
+              <Link to="/signup" className="signup-btn">
+                Sign Up
+              </Link>
+            </div>
+          )}
+        </div>
+
+        <button
+          className="mobile-menu-button"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        >
+          ☰
+        </button>
+
+        {isMobileMenuOpen && (
+          <div className="mobile-menu" ref={mobileMenuRef}>
+            <nav>
+              <ul>
+                <li>
+                  <Link to="/" onClick={() => setIsMobileMenuOpen(false)}>
+                    Home
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/about" onClick={() => setIsMobileMenuOpen(false)}>
+                    About
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/recommendations"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    All Games
+                  </Link>
+                </li>
+              </ul>
+            </nav>
+
+            <div className="mobile-auth">
+              {username ? (
+                <>
+                  <Link
+                    to="/friends"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    👥 Friends
+                  </Link>
+                  <button onClick={handleLogout}>🚪 Log out</button>
+                </>
+              ) : (
+                <>
+                  <Link to="/login" onClick={() => setIsMobileMenuOpen(false)}>
+                    Login
+                  </Link>
+                  <Link to="/signup" onClick={() => setIsMobileMenuOpen(false)}>
+                    Sign Up
+                  </Link>
+                </>
+              )}
+            </div>
           </div>
         )}
       </div>
