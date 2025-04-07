@@ -2,7 +2,7 @@ const User = require("../models/User");
 
 exports.getAllUsers = async (req, res) => {
     try {
-      const users = await User.find({}, "email _id"); // Return email and _id
+      const users = await User.find({}, "username _id");
       res.status(200).json(users);
     } catch (err) {
       res.status(500).json({ message: "Failed to fetch users" });
@@ -11,7 +11,7 @@ exports.getAllUsers = async (req, res) => {
 
   exports.getFriends = async (req, res) => {
     try {
-      const user = await User.findById(req.params.id).populate("friends", "email");
+      const user = await User.findById(req.params.id).populate("friends", "username email");
       if (!user) return res.status(404).json({ message: "User not found" });
   
       res.status(200).json(user.friends);

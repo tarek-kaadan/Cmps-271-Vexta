@@ -5,6 +5,7 @@ import "./FriendList.css";
 interface User {
   _id: string;
   email: string;
+  username: string;
 }
 
 const FriendList: React.FC = () => {
@@ -52,7 +53,7 @@ const FriendList: React.FC = () => {
         {friends.length > 0 ? (
           friends.map((friend) => (
             <div key={friend._id} className="friend-card">
-              <span className="friend-email">{friend.email}</span>
+              <span className="friend-email">{friend.username}</span>
               <button className="remove-button" onClick={() => handleRemoveFriend(friend._id)}>
                 ❌ Remove Friend
               </button>

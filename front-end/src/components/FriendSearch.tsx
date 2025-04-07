@@ -5,6 +5,7 @@ import "./FriendSearch.css";
 interface User {
   _id: string;
   email: string;
+  username: string;
 }
 
 const FriendSearch: React.FC = () => {
@@ -95,7 +96,7 @@ const FriendSearch: React.FC = () => {
           .filter((u) => u._id !== currentUserId)
           .map((user) => (
             <div key={user._id} className="friend-card">
-              <span className="friend-email">{user.email}</span>
+              <span className="friend-email">{user.username}</span>
               {!friends.has(user._id) ? (
                 <button className="add-button" onClick={() => handleAddFriend(user._id)}>
                   ➕ Add Friend
