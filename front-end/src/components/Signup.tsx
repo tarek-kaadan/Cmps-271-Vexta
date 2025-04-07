@@ -4,6 +4,7 @@ import axios from "axios";
 import "./LoginSignup.css";
 
 const SignupPage: React.FC = () => {
+  const [username, setUsername] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
@@ -16,32 +17,35 @@ const SignupPage: React.FC = () => {
     e.preventDefault();
     setError("");
     setSuccess("");
-  
-    if (!email || !password || !confirmPassword) {
+
+    if (!username || !email || !password || !confirmPassword) {
       setError("All fields are required.");
       return;
     }
-  
+
     if (password !== confirmPassword) {
       setError("Passwords do not match.");
       return;
     }
-  
+
     try {
       const response = await axios.post("http://localhost:5000/api/auth/signup", {
+        username,
         email,
         password,
       });
-  
+
       if (response.status === 201) {
         setSuccess("Signup successful! Redirecting...");
         localStorage.setItem("token", response.data.token);
-        setTimeout(() => navigate("/login"), 1500);
+        localStorage.setItem("userId", response.data.user._id);
+        localStorage.setItem("username", response.data.user.username);
+        setTimeout(() => navigate("/"), 1500);
       }
     } catch (err: any) {
       setError(err.response?.data?.message || "Signup failed. Try again.");
     }
-  };  
+  };
 
   return (
     <div className="auth-container">
@@ -50,6 +54,13 @@ const SignupPage: React.FC = () => {
         {error && <p className="auth-error">{error}</p>}
         {success && <p className="auth-success">{success}</p>}
         <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            placeholder="Username"
+            value={username}
+            onChange={(e: ChangeEvent<HTMLInputElement>) => setUsername(e.target.value)}
+            required
+          />
           <input
             type="email"
             placeholder="Email"

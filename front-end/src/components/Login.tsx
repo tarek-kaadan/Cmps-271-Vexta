@@ -15,23 +15,25 @@ const LoginPage: React.FC = () => {
     e.preventDefault();
     setError("");
     setSuccess("");
-  
+
     try {
       const response = await axios.post("http://localhost:5000/api/auth/login", {
         email,
         password,
       });
-  
+
       if (response.status === 200) {
         setSuccess("Login successful! Redirecting...");
-        localStorage.setItem("token", response.data.token);      // ✅ Save token
-        localStorage.setItem("userId", response.data.userId);    // ✅ Save userId
+        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("userId", response.data.user._id);
+        localStorage.setItem("username", response.data.user.username);
+        console.log("Login Response:", response.data);
         setTimeout(() => navigate("/"), 1500);
       }
     } catch (err: any) {
       setError(err.response?.data?.message || "Login failed. Try again.");
     }
-  };  
+  };
 
   return (
     <div className="auth-container">
