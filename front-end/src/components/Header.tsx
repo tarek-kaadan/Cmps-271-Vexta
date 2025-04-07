@@ -1,8 +1,12 @@
 import { Link } from "react-router-dom";
 
-export default function Header() {
+interface HeaderProps {
+  className?: string;
+}
+
+export default function Header({ className }: HeaderProps) {
   return (
-    <header>
+    <header className={className}>
       <h1 style={{ margin: 0, fontSize: "35px", fontWeight: "bold" }}>Vexta</h1>
 
       <nav>

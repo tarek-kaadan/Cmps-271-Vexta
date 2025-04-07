@@ -10,7 +10,7 @@ interface Props {
 export default function Card({ title, description, image, rating }: Props) {
   return (
     <Link
-      to={`/game/${title}`}
+      to={`/games/title/${title}`}
       className="card"
       style={{ textDecoration: "none", color: "inherit" }}
     >

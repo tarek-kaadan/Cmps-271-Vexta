@@ -26,18 +26,34 @@ router.get('/', async (req, res) => {
     res.json(allGames);
 })
 
-router.get("/:id", async (req, res) => {
-    try {
-      const game = await Game.findById(req.params.id);  
-      if (!game) {
-        return res.status(404).json({ message: "Game not found" });
-      }
-      res.json(game);  
-    } catch (err) {
-      console.error("Error fetching game details:", err);
-      res.status(500).json({ message: "Server error", error: err });
+router.get('/title/:title', async (req, res) => {
+  try {
+    const { title } = req.params; 
+    const game = await Game.findOne({ title: title }); 
+
+    if (!game) {
+      return res.status(404).json({ message: "Game not found" }); 
     }
+
+    res.json(game); 
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Server error" }); 
+  }
 });
+
+
+router.get('/:id', async (req, res) => {
+  try {
+    const game = await Game.findById(req.params.id); 
+    if (!game) return res.status(404).json({ message: "Game not found" });
+    res.json(game); 
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Server error" });
+  }
+});
+
 
 router.patch("/:id", async (req, res) => {
     try {

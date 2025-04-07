@@ -1,9 +1,9 @@
 import "./StyleComponents/BigDiv.css";
 
 interface Props {
-  name: String,
-  image: String,
-  link: String
+  name: String;
+  image: String;
+  link: String;
 }
 
 export default function BigImage({ name, image, link }: Props) {
@@ -11,7 +11,7 @@ export default function BigImage({ name, image, link }: Props) {
     <div
       className="BigDiv"
       style={{
-        backgroundImage: `url(${image})`
+        backgroundImage: `url(${image})`,
       }}
     >
       <h2>{name}</h2>

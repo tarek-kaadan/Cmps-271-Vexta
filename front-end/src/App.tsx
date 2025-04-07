@@ -35,7 +35,7 @@ const App: React.FC = () => {
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/friends" element={<FriendSearch />} />
         <Route path="/my-friends" element={<FriendsList />} />
-        <Route path="/game/:title" element={<GameDetail />} />
+        <Route path="/games/title/:title" element={<GameDetail />} />
       </Routes>
     </BrowserRouter>
   );
