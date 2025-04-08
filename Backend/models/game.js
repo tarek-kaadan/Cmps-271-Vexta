@@ -59,6 +59,10 @@ const games = new Schema({
         type: String,
         required: false
     },
+    Video: {
+        type: String,
+        required: false
+    },
     createdAt: {
         type: Date,
         default: Date.now

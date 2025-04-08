@@ -50,21 +50,19 @@ export default function Header({ className }: HeaderProps) {
     <header className={className}>
       <div className="header-content">
         <h1>Vexta</h1>
-
         <nav className="desktop-nav">
           <ul>
             <li>
               <Link to="/">Home</Link>
             </li>
             <li>
-              <Link to="/about">About</Link>
+              <Link to="/About">About</Link>
             </li>
             <li>
               <Link to="/All-Games">All Games</Link>
             </li>
           </ul>
         </nav>
-
         <div className="right-section">
           {username ? (
             <div className="user-dropdown" ref={dropdownRef}>
@@ -94,14 +92,12 @@ export default function Header({ className }: HeaderProps) {
             </div>
           )}
         </div>
-
         <button
           className="mobile-menu-button"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
           ☰
         </button>
-
         {isMobileMenuOpen && (
           <div className="mobile-menu" ref={mobileMenuRef}>
             <nav>

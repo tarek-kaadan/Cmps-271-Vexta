@@ -14,6 +14,7 @@ import GameDetail from "./components/GameDetail";
 import ChooseCategories from "./components/ChooseCategories";
 import "./index.css";
 import AllGames from "./AllGames";
+import AboutPage from "./components/AboutPage";
 
 const Home: React.FC = () => {
   return (
@@ -40,6 +41,7 @@ const App: React.FC = () => {
         <Route path="/games/title/:title" element={<GameDetail />} />
         <Route path="/choose-categories" element={<ChooseCategories />} />
         <Route path="/All-Games" element={<AllGames />} />
+        <Route path="/About" element={<AboutPage />} />
       </Routes>
     </BrowserRouter>
   );
