@@ -74,7 +74,9 @@ header {
   
   h1 {
     font-size: 40px;
-    color: white;
+    background: linear-gradient(to right, #ff7e5f, #feb47b); 
+    -webkit-background-clip: text; 
+    color: transparent;
     margin: 0;
     font-family: "Jersey 10", sans-serif;
   }

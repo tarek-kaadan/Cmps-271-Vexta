@@ -25,9 +25,6 @@
   .gameDetail-header .desktop-nav a:hover{
     color: grey !important;
   }
-  .gameDetail-header h1 {
-    color: black;
-  }
   .mobile-menu a, .mobile-menu button {
     color: black;
   }
