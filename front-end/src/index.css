@@ -57,6 +57,7 @@
 header {
     position: sticky;
     top: 0;
+    margin-top: -70px;
     z-index: 1000;
     background-color: rgba(84, 84, 84, 0.05);
     backdrop-filter: blur(10px);
@@ -90,8 +91,11 @@ header {
     color: white;
     text-decoration: none;
     font-size: 1.1rem;
+    font-weight: bold;
   }
-  
+  .desktop-nav a:hover{
+    color: black;
+  }
   .right-section {
     display: flex;
     align-items: center;
@@ -200,13 +204,24 @@ header {
   }
   
 
-footer {
+  footer {
     background: linear-gradient(to top, #D9FC79, #96E6A1);
     padding: 5px;
-    border-radius: 15px 15px 0px 0px;
-    display: flex; 
-    justify-content: space-between;
-}
+    border-radius: 15px 15px 0 0;
+    position: relative; 
+    height: 60px;       
+    display: flex;
+    align-items: center;
+  }
+
+  footer p {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;  
+    font-weight: bold;
+    color: white;
+  }
 
 footer h1{
     font-family: "Jersey 10", sans-serif;
@@ -215,6 +230,7 @@ footer h1{
     color: white;
     margin: 10px;
     font-size: 50px;
+    margin-left: 15px;
 }
 
 .login-btn, .signup-btn,

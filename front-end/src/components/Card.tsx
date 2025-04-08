@@ -17,7 +17,7 @@ export default function Card({ title, description, image, rating }: Props) {
       <img src={image} alt="Game Picture"></img>
       <h2>{title}</h2>
       <div className="rating">
-        <p>⭐: {rating}</p>
+        <p style={{ fontSize: "13px" }}>⭐: {rating}</p>
       </div>
       <p>{description}</p>
     </Link>

@@ -13,17 +13,34 @@ interface Game {
   id: number;
   title: string;
   description: string;
-  genre: string;
-  image: string;
+  category: string;
+  overlayImage: string;
   link: string;
-  rating: number;
+  averageRating: number;
 }
 
 export default function GamesGenre() {
   const [games, setGame] = useState<Game[]>([]);
   const [selectedGenre, setSelectedGenres] = useState("Genre");
 
-  const genres = ["Genre", "Open World", "strategy"];
+  const genres = [
+    "Genre",
+    "Board Game",
+    "Physical Game",
+    "Team Sport",
+    "Horseback Sport",
+    "Outdoor Game",
+    "Hand Game",
+    "Throwing Game",
+    "Toy Game",
+    "Dexterity Game",
+    "Strength Game",
+    "Coordination Game",
+    "Jumping Game",
+    "Circle Game",
+    "Elimination Game",
+    "Collectible Game",
+  ];
   useEffect(() => {
     axios
       .get("http://localhost:5000/api/games") //api
@@ -38,7 +55,7 @@ export default function GamesGenre() {
   const FilteredGames =
     selectedGenre === "Genre"
       ? games
-      : games.filter((game) => selectedGenre === game.genre);
+      : games.filter((game) => selectedGenre === game.category);
 
   return (
     <>
@@ -75,8 +92,8 @@ export default function GamesGenre() {
             <Card
               title={game.title}
               description={game.description}
-              image={game.image}
-              rating={game.rating}
+              image={game.overlayImage}
+              rating={game.averageRating}
             />
           </SwiperSlide>
         ))}

@@ -13,29 +13,31 @@ interface Game {
   id: number;
   title: string;
   description: string;
-  image: string;
+  overlayImage: string;
   link: string;
-  rating: number;
+  averageRating: number;
 }
 
 export default function Recommendation() {
   const [games, setGame] = useState<Game[]>([]);
   useEffect(() => {
-      const userId = localStorage.getItem("userId");
-      const token = localStorage.getItem("token");
-    
-      if (!userId || !token) return;
-    
-      axios.get(`http://localhost:5000/api/recommendations/${userId}`, {
+    const userId = localStorage.getItem("userId");
+    const token = localStorage.getItem("token");
+    console.log("Token:", token);
+    if (!userId || !token) return;
+
+    axios
+      .get(`http://localhost:5000/api/recommendations/${userId}`, {
         headers: { token: `Bearer ${token}` },
       })
       .then((res) => {
         setGame(res.data);
+        console.log("data fetched");
       })
       .catch((error) => {
         console.log("could not fetch data:", error);
       });
-    }, []);
+  }, []);
 
   return (
     <>
@@ -55,13 +57,13 @@ export default function Recommendation() {
         }}
         className="RecomSwiper"
       >
-        {games.map((game) => (
+        {games.slice(0, 10).map((game) => (
           <SwiperSlide key={game.id}>
             <Card
               title={game.title}
               description={game.description}
-              image={game.image}
-              rating={game.rating}
+              image={game.overlayImage}
+              rating={game.averageRating}
             />
           </SwiperSlide>
         ))}

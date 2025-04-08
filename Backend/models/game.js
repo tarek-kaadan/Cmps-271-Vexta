@@ -11,10 +11,6 @@ const games = new Schema({
         type: String,
         required: true
     },
-    fullDescription: {
-        type: String,
-        required: true
-    },
     category: {
         type: String,
         required: true
@@ -23,21 +19,13 @@ const games = new Schema({
         type: String,
         required: true
     },
-    Culture: {
-        type: String,
-        required: false
-    },
-    AgeGroup: {
-        type: String,
-        required: true
-    },
-    EstimatedDuration: {
-        type: String,
-        required: false
-    },
     numberOfPlayers: {
         type: Number,
         required: true
+    },
+    culture: {
+        type: String,
+        required: false
     },
     averageRating: {
         type: Number,
@@ -45,6 +33,30 @@ const games = new Schema({
     },
     ratingCount: {
         type: Number,
+        required: false
+    },
+    ageGroup: {
+        type: String,
+        required: true
+    },
+    estimatedDuration: {
+        type: String,
+        required: false
+    },
+    culturalContext: {
+        type: String,
+        required: false
+    },
+    fullDescription: {
+        type: String,
+        required: true
+    },
+    overlayImage: {
+        type: String,
+        required: true
+    },
+    sliderImage: {
+        type: String,
         required: false
     },
     createdAt: {

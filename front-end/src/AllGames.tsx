@@ -8,8 +8,8 @@ type Game = {
   id: string;
   title: string;
   description: string;
-  image: string;
-  rating: number;
+  overlayImage: string;
+  averageRating: number;
 };
 
 const AllGames: React.FC = () => {
@@ -66,8 +66,8 @@ const AllGames: React.FC = () => {
             <Card
               title={game.title}
               description={game.description}
-              image={game.image}
-              rating={game.rating}
+              image={game.overlayImage}
+              rating={game.averageRating}
             />
           ))}
         </div>

@@ -1,4 +1,5 @@
 import "./StyleComponents/BigDiv.css";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
   name: String;
@@ -7,6 +8,12 @@ interface Props {
 }
 
 export default function BigImage({ name, image, link }: Props) {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/games/title/${name}`);
+  };
+
   return (
     <div
       className="BigDiv"
@@ -15,7 +22,7 @@ export default function BigImage({ name, image, link }: Props) {
       }}
     >
       <h2>{name}</h2>
-      <button>Click here</button>
+      <button onClick={handleClick}>Click here</button>
     </div>
   );
 }

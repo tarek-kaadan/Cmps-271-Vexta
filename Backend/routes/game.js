@@ -2,21 +2,6 @@ const express = require('express');
 const router = express.Router();
 const Game = require('../models/game');
 
-/*function insertPostData () {
-  games.insertMany([
-      {
-          title: "Cyberpunk 2077",
-          description: "V is the best",
-          category: "Open World",
-          OriginCountry: "Poland",
-          numberOfPlayers: 20000
-
-      },
-  ])
-}*/
-
-//insertPostData();
-
 
 router.get('/', async (req, res) => {
     const allGames= await Game.find();

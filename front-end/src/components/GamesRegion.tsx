@@ -13,17 +13,44 @@ interface Game {
   id: number;
   title: string;
   description: string;
-  country: string;
-  image: string;
+  OriginCountry: string;
+  overlayImage: string;
   link: string;
-  rating: number;
+  averageRating: number;
 }
 
 export default function GamesRegion() {
   const [games, setGames] = useState<Game[]>([]);
   const [selectedCountry, setSelectedCountry] = useState("Country");
 
-  const countries = ["Country", "USA", "Japan"];
+  const countries = [
+    "Country",
+    "Africa",
+    "Iran",
+    "Philippines",
+    "India",
+    "Iraq",
+    "Switzerland",
+    "China",
+    "Brazil",
+    "Afghanistan",
+    "Latin America",
+    "Sri Lanka",
+    "South Korea",
+    "Morocco",
+    "Kazakhstan",
+    "Malaysia",
+    "Greece",
+    "United Kingdom",
+    "Uganda",
+    "Egypt",
+    "Thailand",
+    "New Zealand",
+    "USA",
+    "Sweden",
+    "Russia",
+    "France",
+  ];
 
   useEffect(() => {
     axios
@@ -39,7 +66,7 @@ export default function GamesRegion() {
   const filteredGames =
     selectedCountry === "Country"
       ? games
-      : games.filter((game) => game.country === selectedCountry);
+      : games.filter((game) => game.OriginCountry === selectedCountry);
 
   return (
     <>
@@ -76,8 +103,8 @@ export default function GamesRegion() {
             <Card
               title={game.title}
               description={game.description}
-              image={game.image}
-              rating={game.rating}
+              image={game.overlayImage}
+              rating={game.averageRating}
             />
           </SwiperSlide>
         ))}

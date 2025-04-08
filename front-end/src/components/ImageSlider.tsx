@@ -1,31 +1,33 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
-import BigImage from "./BigImage";
 import { Swiper, SwiperSlide } from "swiper/react";
+import BigImage from "./BigImage";
 
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import chalk from "chalk";
 
 interface Game {
   id: number;
   title: string;
-  image: string;
   link: string;
+  image?: string;
+  sliderImage?: string;
 }
 
-export default () => {
+const Slider: React.FC = () => {
   const [games, setGames] = useState<Game[]>([]);
+
   useEffect(() => {
     axios
       .get("http://localhost:5000/api/games")
       .then((response) => {
-        setGames(response.data);
+        const filtered = response.data.filter((game: Game) => game.sliderImage);
+        setGames(filtered);
       })
       .catch((error) => {
-        console.error(chalk.red("Error fetching game data:", error));
+        console.error("Error fetching game data:", error);
       });
   }, []);
 
@@ -47,10 +49,15 @@ export default () => {
     >
       {games.map((game) => (
         <SwiperSlide key={game.id}>
-          <BigImage name={game.title} image={game.image} link={game.link} />
+          <BigImage
+            name={game.title}
+            image={game.sliderImage!}
+            link={game.link}
+          />
         </SwiperSlide>
       ))}
-      ...
     </Swiper>
   );
 };
+
+export default Slider;
