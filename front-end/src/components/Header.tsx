@@ -92,6 +92,9 @@ export default function Header({ className }: HeaderProps) {
                   <Link to="/friends" onClick={() => setDropdownOpen(false)}>
                     👥 Friends
                   </Link>
+                  <Link to="/bookmarked" onClick={() => setDropdownOpen(false)}>
+                    🔖 Bookmarked
+                  </Link>
                   <Link to="/change-profile-picture" onClick={() => setDropdownOpen(false)}>
                     🖼️ Change Picture
                   </Link>

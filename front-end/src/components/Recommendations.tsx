@@ -10,6 +10,7 @@ import "./StyleComponents/swiper.css";
 import chalk from "chalk";
 
 interface Game {
+  _id: string;
   id: number;
   title: string;
   description: string;
@@ -60,6 +61,7 @@ export default function Recommendation() {
         {games.slice(0, 10).map((game) => (
           <SwiperSlide key={game.id}>
             <Card
+              _id={game._id}
               title={game.title}
               description={game.description}
               image={game.overlayImage}

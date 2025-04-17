@@ -1,4 +1,5 @@
 const User = require("../models/User");
+const Game = require("../models/game");
 
 exports.getAllUsers = async (req, res) => {
     try {
@@ -21,7 +22,6 @@ exports.getAllUsers = async (req, res) => {
   };  
   
 
-// controllers/userController.js
 exports.addFriend = async (req, res) => {
   const { userId } = req.params;
   const { friendId } = req.body;
@@ -95,5 +95,41 @@ exports.uploadProfilePicture = async (req, res) => {
   } catch (err) {
     console.error("Upload error:", err);
     res.status(500).json({ message: "Upload failed" });
+  }
+};
+
+exports.toggleBookmark = async (req, res) => {
+  const { userId } = req.params;
+  const { gameId } = req.body;
+
+  try {
+    const user = await User.findById(userId);
+    if (!user) return res.status(404).json({ message: "User not found" });
+
+    const index = user.bookmarkedGames.indexOf(gameId);
+    if (index > -1) {
+      user.bookmarkedGames.splice(index, 1); // remove
+    } else {
+      const game = await Game.findById(gameId);
+      if (!game) return res.status(404).json({ message: "Game not found" });
+      user.bookmarkedGames.push(gameId); // add
+    }
+
+    await user.save();
+    res.status(200).json({ message: "Bookmark updated", bookmarks: user.bookmarkedGames });
+  } catch (err) {
+    res.status(500).json({ message: "Error updating bookmarks", error: err });
+  }
+};
+
+exports.getBookmarks = async (req, res) => {
+  try {
+    const user = await User.findById(req.params.userId).populate("bookmarkedGames");
+    if (!user) return res.status(404).json({ message: "User not found" });
+
+    res.status(200).json(user.bookmarkedGames);
+  } catch (err) {
+    console.error("🔥 getBookmarks error:", err);
+    res.status(500).json({ message: "Error fetching bookmarks", error: err.message });
   }
 };
