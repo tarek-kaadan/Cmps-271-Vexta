@@ -11,7 +11,7 @@ exports.signup = async (req, res) => {
       return res.status(400).json({ message: "Invalid email format" });
     }
 
-    if (!email.endsWith("@gmail.com") && !email.endsWith("@hotmail.com") && !email.endsWith("@aub.edu.lb")) {
+    if (!email.endsWith("@gmail.com") && !email.endsWith("@hotmail.com") && !email.endsWith("@mail.aub.edu")) {
       return res.status(400).json({ message: "Invalid email account" });
     }
 
