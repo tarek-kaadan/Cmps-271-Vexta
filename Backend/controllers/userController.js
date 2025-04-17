@@ -79,3 +79,21 @@ exports.savePreferences = async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 };
+
+exports.uploadProfilePicture = async (req, res) => {
+  try {
+    const userId = req.params.id;
+    const imagePath = `uploads/${req.file.filename}`;
+
+    const user = await User.findByIdAndUpdate(
+      userId,
+      { profilePicture: imagePath },
+      { new: true }
+    );
+
+    res.status(200).json({ message: "Profile updated", user });
+  } catch (err) {
+    console.error("Upload error:", err);
+    res.status(500).json({ message: "Upload failed" });
+  }
+};

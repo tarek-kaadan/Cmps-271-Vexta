@@ -12,6 +12,7 @@ import FriendSearch from "./components/FriendSearch";
 import FriendsList from "./components/FriendList";
 import GameDetail from "./components/GameDetail";
 import ChooseCategories from "./components/ChooseCategories";
+import ChangeProfilePicture from "./components/ChangeProfilePicture";
 import "./index.css";
 import AllGames from "./AllGames";
 import AboutPage from "./components/AboutPage";
@@ -42,6 +43,7 @@ const App: React.FC = () => {
         <Route path="/choose-categories" element={<ChooseCategories />} />
         <Route path="/All-Games" element={<AllGames />} />
         <Route path="/About" element={<AboutPage />} />
+        <Route path="/change-profile-picture" element={<ChangeProfilePicture />} />
       </Routes>
     </BrowserRouter>
   );
