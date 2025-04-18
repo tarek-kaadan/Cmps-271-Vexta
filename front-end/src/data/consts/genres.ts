@@ -1,0 +1,18 @@
+export const genres = [
+  'All',
+  'Board Game',
+  'Physical Game',
+  'Team Sport',
+  'Horseback Sport',
+  'Outdoor Game',
+  'Hand Game',
+  'Throwing Game',
+  'Toy Game',
+  'Dexterity Game',
+  'Strength Game',
+  'Coordination Game',
+  'Jumping Game',
+  'Circle Game',
+  'Elimination Game',
+  'Collectible Game',
+];

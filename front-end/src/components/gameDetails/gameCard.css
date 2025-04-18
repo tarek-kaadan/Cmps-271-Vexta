@@ -9,7 +9,7 @@
   margin: 2rem 0;
   border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
 .game-main-image {
@@ -25,7 +25,7 @@
   left: 0;
   right: 0;
   padding: 2rem;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  background: linear-gradient(transparent, rgba(0,0,0,0.8));
   color: white;
   border-radius: 0 0 20px 20px;
 }
@@ -56,7 +56,7 @@
   background: white;
   padding: 1.5rem;
   border-radius: 15px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
   transition: transform 0.3s ease;
 }
 
@@ -121,12 +121,8 @@
 }
 
 @keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 .error-container {
@@ -141,50 +137,38 @@
   font-size: 2rem;
   margin-bottom: 1rem;
 }
-
-.gameDetail-header {
-  background-color: white;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  margin-top: 0px;
-}
-.gameDetail-header .desktop-nav a {
-  color: black;
-  font-weight: bold;
-}
-.gameDetail-header .desktop-nav a:hover {
-  color: grey !important;
-}
-
-@media (max-width: 768px) {
-  .game-main-image {
-    height: 300px;
+  
+  @media (max-width: 768px) {
+    .game-main-image {
+      height: 300px;
+    }
+  
+    .game-basic-info h1 {
+      font-size: 2rem;
+    }
+  
+    .action-buttons {
+      flex-direction: column;
+    }
+  
+    .primary-button,
+    .secondary-button {
+      width: 100%;
+      text-align: center;
+    }
   }
 
-  .game-basic-info h1 {
-    font-size: 2rem;
+  @media (max-width: 480px) {
+    .game-detail-container {
+      padding: 10px;
+    }
+  
+    .game-basic-info {
+      padding: 1rem;
+    }
+  
+    .game-basic-info h1 {
+      font-size: 1.5rem;
+    } 
   }
-
-  .action-buttons {
-    flex-direction: column;
-  }
-
-  .primary-button,
-  .secondary-button {
-    width: 100%;
-    text-align: center;
-  }
-}
-
-@media (max-width: 480px) {
-  .game-detail-container {
-    padding: 10px;
-  }
-
-  .game-basic-info {
-    padding: 1rem;
-  }
-
-  .game-basic-info h1 {
-    font-size: 1.5rem;
-  }
-}
+  

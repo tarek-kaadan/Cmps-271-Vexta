@@ -1,13 +1,10 @@
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-import "bootstrap/dist/css/bootstrap.css";
-import App from "./App.tsx";
-import React from "react";
-import ReactDOM from "react-dom/client";
-import { disableReactDevTools } from "@fvilers/disable-react-devtools";
+import 'bootstrap/dist/css/bootstrap.css';
+import App from './App.tsx';
+import React from 'react';
+import ReactDOM from 'react-dom/client';
 
-ReactDOM.createRoot(document.getElementById("root")!).render(
+ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <App />
-  </React.StrictMode>
+  </React.StrictMode>,
 );

@@ -1,53 +1,39 @@
-import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import LoginPage from "./components/Login";
-import SignupPage from "./components/Signup";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import Recommendations from "./components/Recommendations";
-import GamesGenre from "./components/GamesGenre";
-import GamesRegion from "./components/GamesRegion";
-import ImageSlider from "./components/ImageSlider";
-import FriendSearch from "./components/FriendSearch";
-import FriendsList from "./components/FriendList";
-import GameDetail from "./components/GameDetail";
-import ChooseCategories from "./components/ChooseCategories";
-import ChangeProfilePicture from "./components/ChangeProfilePicture";
-import BookmarkedGames from "./components/BookmarkedGames";
-import "./index.css";
-import AllGames from "./AllGames";
-import AboutPage from "./components/AboutPage";
-
-const Home: React.FC = () => {
-  return (
-    <>
-      <Header />
-      <ImageSlider />
-      <Recommendations />
-      <GamesGenre />
-      <GamesRegion />
-      <Footer />
-    </>
-  );
-};
+import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import LoginPage from './components/login/Login';
+import SignupPage from './components/signup/Signup';
+import FriendSearch from './components/friends/FriendSearch';
+import FriendsList from './components/friends/FriendList';
+import GameDetail from './components/gameDetails/GameDetail';
+import './index.css';
+import AllGames from './Pages/allGames/AllGames';
+import AboutPage from './Pages/AboutUs/AboutPage';
+import Header from './components/header/Header';
+import Footer from './components/Footer/Footer';
+import Home from './Pages/Home';
+import ChooseCategories from './components/categories';
 
 const App: React.FC = () => {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/signup" element={<SignupPage />} />
-        <Route path="/friends" element={<FriendSearch />} />
-        <Route path="/my-friends" element={<FriendsList />} />
-        <Route path="/games/title/:title" element={<GameDetail />} />
-        <Route path="/choose-categories" element={<ChooseCategories />} />
-        <Route path="/All-Games" element={<AllGames />} />
-        <Route path="/About" element={<AboutPage />} />
-        <Route path="/change-profile-picture" element={<ChangeProfilePicture />} />
-        <Route path="/bookmarked" element={<BookmarkedGames />} />
-      </Routes>
-    </BrowserRouter>
+    <>
+      <BrowserRouter>
+        <Header />
+
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/signup" element={<SignupPage />} />
+          <Route path="/friends" element={<FriendSearch />} />
+          <Route path="/my-friends" element={<FriendsList />} />
+          <Route path="/games/title/:title" element={<GameDetail />} />
+          <Route path="/choose-categories" element={<ChooseCategories />} />
+          <Route path="/All-Games" element={<AllGames />} />
+          <Route path="/About" element={<AboutPage />} />
+        </Routes>
+
+        <Footer />
+      </BrowserRouter>
+    </>
   );
 };
 
