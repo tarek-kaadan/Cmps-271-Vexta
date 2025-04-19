@@ -1,6 +1,7 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const cors = require('cors');
+const path = require("path");
 const connectDB = require('./server');
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/user');
@@ -19,6 +20,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/games', gamesRoutes);
 app.use('/api/recommendations', recommendationRoutes);
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 connectDB().then(() => {
   app.listen(PORT, () => {

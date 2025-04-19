@@ -10,12 +10,22 @@ const Header = () => {
   const [username, setUsername] = useState<string | null>(null);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [profilePicture, setProfilePicture] = useState<string>("");
   const dropdownRef = useRef<HTMLDivElement>(null);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const storedUsername = localStorage.getItem('username');
+    const storedProfilePicture = localStorage.getItem("profilePicture");
+
+    console.log("🧠 Stored profile picture:", storedProfilePicture);
+    
     setUsername(storedUsername || null);
+    if (storedProfilePicture) {
+      setProfilePicture(`http://localhost:5001/${storedProfilePicture}`);
+    } else {
+      setProfilePicture("http://localhost:5001/uploads/default.jpg");
+    }
   }, []);
 
   useEffect(() => {
@@ -71,6 +81,7 @@ const Header = () => {
           setDropdownOpen={setDropdownOpen}
           handleLogout={handleLogout}
           dropdownRef={dropdownRef}
+          profilePicture ={profilePicture}
         />
         <button
           className="mobile-menu-button"

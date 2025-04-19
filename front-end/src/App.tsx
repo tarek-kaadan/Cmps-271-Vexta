@@ -12,6 +12,7 @@ import Header from './components/header/Header';
 import Footer from './components/Footer/Footer';
 import Home from './Pages/Home';
 import ChooseCategories from './components/categories';
+import ChangeProfilePicture from './components/profilePicture/ChangeProfilePictire';
 
 const App: React.FC = () => {
   return (
@@ -29,6 +30,7 @@ const App: React.FC = () => {
           <Route path="/choose-categories" element={<ChooseCategories />} />
           <Route path="/All-Games" element={<AllGames />} />
           <Route path="/About" element={<AboutPage />} />
+          <Route path="/change-profile-picture" element={<ChangeProfilePicture />} />
         </Routes>
 
         <Footer />

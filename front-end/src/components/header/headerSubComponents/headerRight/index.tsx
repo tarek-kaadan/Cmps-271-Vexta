@@ -7,6 +7,7 @@ interface AuthSectionProps {
   setDropdownOpen: (open: boolean) => void;
   handleLogout: () => void;
   dropdownRef: RefObject<HTMLDivElement | null>;
+  profilePicture: string;
 }
 
 const AuthSection = ({
@@ -15,18 +16,33 @@ const AuthSection = ({
   setDropdownOpen,
   handleLogout,
   dropdownRef,
+  profilePicture,
 }: AuthSectionProps) => {
   return (
     <div className="right-section">
       {username ? (
         <div className="user-dropdown" ref={dropdownRef}>
           <button className="username-btn" onClick={() => setDropdownOpen(!dropdownOpen)}>
+            <img
+              src={profilePicture}
+              alt="Profile"
+              style={{
+                width: "30px",
+                height: "30px",
+                borderRadius: "50%",
+                objectFit: "cover",
+                marginRight: "10px",
+              }}
+            />
             {username}
           </button>
           {dropdownOpen && (
             <div className="dropdown-menu">
               <Link to="/friends" onClick={() => setDropdownOpen(false)}>
                 👥 Friends
+              </Link>
+              <Link to="/change-profile-picture" onClick={() => setDropdownOpen(false)}>
+                  Change Picture
               </Link>
               <button onClick={handleLogout}>Log out</button>
             </div>
