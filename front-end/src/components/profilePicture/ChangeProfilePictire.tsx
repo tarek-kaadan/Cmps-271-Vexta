@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 
 const ChangeProfilePicture: React.FC = () => {
   const [image, setImage] = useState<File | null>(null);
-  const [preview, setPreview] = useState<string | null>(null); // For temporary preview before upload
-  const [uploadedImagePath, setUploadedImagePath] = useState<string | null>(null); // For confirmed path after upload
+  const [preview, setPreview] = useState<string | null>(null);
+  const [uploadedImagePath, setUploadedImagePath] = useState<string | null>(null);
   const [message, setMessage] = useState<string>("");
   const navigate = useNavigate();
   const userId = localStorage.getItem("userId");
@@ -15,7 +15,7 @@ const ChangeProfilePicture: React.FC = () => {
     if (file) {
       setImage(file);
       setPreview(URL.createObjectURL(file));
-      setUploadedImagePath(null); // Reset uploaded preview if re-choosing file
+      setUploadedImagePath(null);
     }
   };
 
@@ -39,10 +39,10 @@ const ChangeProfilePicture: React.FC = () => {
         }
       );
   
-      const path = res.data.profilePicture; // ✅ Correct access
+      const path = res.data.profilePicture;
       localStorage.setItem("profilePicture", path);
       console.log("✅ Uploaded profile picture path:", path);
-      setUploadedImagePath(path); // Optional: for preview
+      setUploadedImagePath(path);
       setMessage("✅ Profile picture updated!");
       setTimeout(() => window.location.href = "/", 1000);
     } catch (err) {
