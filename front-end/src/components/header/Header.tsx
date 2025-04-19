@@ -58,7 +58,7 @@ const Header = () => {
       style={{
         position: 'sticky',
         top: 0,
-        backgroundColor: 'rgba(84, 84, 84, 0.8)',
+        backgroundColor: 'rgba(84, 84, 84, 0.3)',
         height: '80px',
         marginBottom: '80px',
         backdropFilter: 'blur(10px)',

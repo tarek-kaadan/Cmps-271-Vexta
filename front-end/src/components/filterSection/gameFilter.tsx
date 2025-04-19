@@ -117,7 +117,8 @@ export default function GamesGenre() {
           display: 'flex',
           flexWrap: 'wrap',
           alignItems: 'flex-start',
-          gap: '16px',
+          justifyContent: "center",
+          gap: '25px',
           padding: '16px',
           width: '100%',
         }}

@@ -33,8 +33,10 @@ export default function Recommendation() {
   return (
     <>
       {/* // islogged in ? */}
-      <Seperator text={"Recomendations"} margintop={-60} />
-      <Swiper
+      {games.length > 0 ? (
+        <>
+        <Seperator text={"Recomendations"} margintop={-60} />
+        <Swiper
         modules={[Navigation]}
         spaceBetween={10}
         slidesPerView={1}
@@ -61,8 +63,14 @@ export default function Recommendation() {
           </SwiperSlide>
         ))}
       </Swiper>
-    </>
-    // if not logged in
-    // null
+      </>
+      ) : (
+        <div style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
+          <div style={{border: "1px solid hsla(0, 0%, 0%, 0.05)" ,borderRadius: "30px", padding: "20px", width: "500px", height: "75px", background: "linear-gradient(to right, #00ff87, #60efff)", boxShadow: '5px 5px 5px hsla(0, 0%, 0%, 0.056)'}}>
+            <p style={{display: "flex", justifyContent: "center", alignItems: "flex-center", color: "white", fontSize: "20px", fontWeight: "bold"}}>Please login to see recommendations</p>
+          </div>
+        </div>
+      )}
+      </>
   );
 }

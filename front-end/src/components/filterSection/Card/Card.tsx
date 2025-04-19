@@ -71,6 +71,7 @@ export default function Card({ title, description, image, rating }: Props) {
             margin: 0,
             fontSize: '13px',
             lineHeight: '1',
+            paddingRight: '10px'
           }}
         >
           ⭐ {rating}
@@ -80,6 +81,7 @@ export default function Card({ title, description, image, rating }: Props) {
       <p
         style={{
           paddingLeft: '10px',
+          paddingRight: '10px',
           textAlign: 'left',
         }}
       >
