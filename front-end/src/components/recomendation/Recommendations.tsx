@@ -32,28 +32,30 @@ export default function Recommendation() {
 
   return (
     <>
-      {/* // islogged in ? */}
       {games.length > 0 ? (
         <>
         <Seperator text={"Recomendations"} margintop={-60} />
         <Swiper
         modules={[Navigation]}
-        spaceBetween={10}
-        slidesPerView={1}
-        loop={true}
+        spaceBetween={16}
+        slidesPerView={4}
+        loop
         navigation
-        onSlideChange={() => console.log("slide change")}
-        onSwiper={(swiper) => console.log(swiper)}
         breakpoints={{
           640: { slidesPerView: 2 },
-          870: { slidesPerView: 3 },
-          1024: { slidesPerView: 4 },
+          900: { slidesPerView: 3 },
+          1200: { slidesPerView: 4 },
         }}
-        className="RecomSwiper"
-        style={{ padding: "20px" }}
+        //className="RecomSwiper"
+        style={{ padding: '20px 0', display: 'flex', justifyContent: 'center' }}
       >
         {games.slice(0, 10).map((game) => (
-          <SwiperSlide key={game.id}>
+          <SwiperSlide key={game.id} 
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
             <Card
               title={game.title}
               description={game.description}

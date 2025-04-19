@@ -1,5 +1,4 @@
-// GradientCard.tsx
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 interface GradientCardProps {
   name: string;
@@ -7,16 +6,26 @@ interface GradientCardProps {
 }
 
 const GradientCard: React.FC<GradientCardProps> = ({ name, onClick }) => {
+  const [isMobile, setIsMobile] = useState<boolean>(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile(); // run on mount
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   return (
     <div
       style={{
         backgroundColor: 'rgba(84, 84, 84, 0.8)',
-        padding: '30px',
-        paddingLeft: '50px',
-        borderTopRightRadius: '0.5rem',
-        borderBottomRightRadius: '0.5rem',
+        padding: isMobile ? '20px' : '30px',
+        paddingLeft: isMobile ? '30px' : '50px',
+        borderRadius: '0.5rem',
         cursor: 'pointer',
-        width: '20%',
+        width: isMobile ? '90%' : '20%',
+        margin: isMobile ? '10px auto' : undefined,
+        boxSizing: 'border-box',
       }}
       onClick={onClick}
     >
@@ -28,11 +37,12 @@ const GradientCard: React.FC<GradientCardProps> = ({ name, onClick }) => {
           color: 'transparent',
           fontFamily: '"Jersey 10", sans-serif',
           margin: 0,
+          fontSize: isMobile ? '1.5rem' : '2rem',
         }}
       >
         {name}
       </h1>
-      <p style={{ color: '#fff' }}>click to know more</p>
+      <p style={{ color: '#fff', fontSize: isMobile ? '0.9rem' : '1rem' }}>click to know more</p>
     </div>
   );
 };
