@@ -1,18 +1,26 @@
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const validator = require("validator");
 
 exports.signup = async (req, res) => {
   const { email, password, username } = req.body;
 
   try {
+    if (!validator.isEmail(email)) {
+      return res.status(400).json({ message: "Invalid email format" });
+    }
+
+    if (!email.endsWith("@gmail.com") && !email.endsWith("@hotmail.com") && !email.endsWith("@aub.edu.lb")) {
+      return res.status(400).json({ message: "Invalid email account" });
+    }
     const existingUser = await User.findOne({ email });
     if (existingUser) return res.status(400).json({ message: "User already exists" });
 
     const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = await User.create({
       email,
-      username, // ✅ Add this
+      username,
       password: hashedPassword,
     });
 

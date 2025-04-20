@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const categories = [
@@ -22,7 +22,7 @@ const categories = [
 
 const ChooseCategories: React.FC = () => {
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const handleCategoryToggle = (category: string) => {
     setSelectedCategories((prev) =>
@@ -39,7 +39,7 @@ const ChooseCategories: React.FC = () => {
         userId,
         categories: selectedCategories,
       });
-      navigate('/');
+      window.location.href = '/';
     } catch (error) {
       console.error('Error saving preferences', error);
     }
