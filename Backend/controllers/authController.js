@@ -23,8 +23,17 @@ exports.signup = async (req, res) => {
       username,
       password: hashedPassword,
     });
-
-    res.status(201).json({ user: newUser });
+    
+    const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET, { expiresIn: "1d" });
+    res.status(201).json({
+      token,
+      user: {
+        _id: newUser._id,
+        email: newUser.email,
+        username: newUser.username,
+        profilePicture: newUser.profilePicture,
+      },
+    });
   } catch (err) {
     console.error("Signup error:", err);
     res.status(500).json({ message: "Server error" });
