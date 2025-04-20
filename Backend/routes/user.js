@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const multer = require("multer");
 const path = require("path");
-const { getAllUsers, addFriend, getFriends, removeFriend, savePreferences, uploadProfilePicture } = require("../controllers/userController");
+const { getAllUsers, addFriend, getFriends, removeFriend, savePreferences, uploadProfilePicture, toggleBookmark, getBookmarks } = require("../controllers/userController");
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => cb(null, "uploads/"),
@@ -13,9 +13,11 @@ const storage = multer.diskStorage({
 
 router.get("/", getAllUsers);
 router.get("/:id/friends", getFriends);
+router.get("/:userId/bookmarks", getBookmarks);
 router.post("/:userId/add-friend", addFriend);
 router.post("/:userId/remove-friend", removeFriend);
 router.post("/preferences", savePreferences);
 router.post("/:id/upload-profile-picture", upload.single("profilePicture"), uploadProfilePicture);
+router.post("/:userId/bookmark", toggleBookmark);
 
 module.exports = router;

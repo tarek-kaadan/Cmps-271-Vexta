@@ -1,13 +1,45 @@
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 interface Props {
+  _id: string;
   title: string;
   description: string;
   image: string;
   rating: number;
 }
 
-export default function Card({ title, description, image, rating }: Props) {
+export default function Card({ title, description, image, rating, _id }: Props) {
+  
+  const [bookmarked, setBookmarked] = useState(false);
+  const userId = localStorage.getItem("userId");
+
+  // Check if this game is already bookmarked
+  useEffect(() => {
+    if (!userId) return;
+
+    axios
+      .get(`http://localhost:5001/api/users/${userId}/bookmarks`)
+      .then((res) => {
+        const isBookmarked = res.data.some((game: any) => game._id === _id);
+        setBookmarked(isBookmarked);
+      })
+      .catch((err) => console.error("Failed to check bookmarks:", err));
+  }, [userId, _id]);
+
+  const toggleBookmark = async (e: React.MouseEvent) => {
+    e.preventDefault(); // Prevent card navigation
+    try {
+      await axios.post(`http://localhost:5001/api/users/${userId}/bookmark`, {
+        gameId: _id,
+      });
+      setBookmarked((prev) => !prev);
+    } catch (err) {
+      console.error("Error toggling bookmark:", err);
+    }
+  };
+
   return (
     <Link
       to={`/games/title/${title}`}
@@ -26,6 +58,31 @@ export default function Card({ title, description, image, rating }: Props) {
         flexDirection: 'column',
       }}
     >
+      <button
+      onClick={toggleBookmark}
+      style={{
+        position: 'absolute',
+        top: '10px',
+        right: '10px',
+        backgroundColor: 'white',
+        border: 'none',
+        borderRadius: '50%',
+        width: '32px',
+        height: '32px',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        cursor: 'pointer',
+        zIndex: 2,
+        fontSize: '18px',
+        transition: 'transform 0.2s ease',
+      }}
+      title={bookmarked ? "Remove Bookmark" : "Bookmark"}
+    >
+      <span style={{ color: bookmarked ? 'red' : 'gray' }}>
+        {bookmarked ? '❤️' : '🤍'}
+      </span>
+    </button>
       <img
         src={image}
         alt="Game Picture"

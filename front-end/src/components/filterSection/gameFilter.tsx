@@ -7,6 +7,7 @@ import DropDownSelector from './dropdown/indec';
 import { genres } from '../../data/consts/genres';
 
 interface Game {
+  _id: string;
   id: number;
   title: string;
   description: string;
@@ -268,7 +269,8 @@ export default function GamesGenre() {
         {filteredGames.length > 0 ? (
           filteredGames.map((game) => (
             <Card
-              key={game.id}
+              key={game._id}
+              _id={game._id}
               title={game.title}
               description={game.description}
               image={game.overlayImage}

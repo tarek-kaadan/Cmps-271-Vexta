@@ -57,6 +57,8 @@ export default function Recommendation() {
             alignItems: 'center',
           }}>
             <Card
+              key={game._id}
+              _id={game._id}
               title={game.title}
               description={game.description}
               image={game.overlayImage}

@@ -18,7 +18,7 @@ const Header = () => {
     const storedUsername = localStorage.getItem('username');
     const storedProfilePicture = localStorage.getItem("profilePicture");
 
-    console.log("🧠 Stored profile picture:", storedProfilePicture);
+    // console.log("🧠 Stored profile picture:", storedProfilePicture);
     
     setUsername(storedUsername || null);
     if (storedProfilePicture) {
