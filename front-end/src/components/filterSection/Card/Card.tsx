@@ -46,6 +46,7 @@ export default function Card({ title, description, image, rating, _id }: Props) 
       style={{
         textDecoration: 'none',
         color: 'inherit',
+        backgroundColor: "white",
         border: '1px solid hsl(0, 0%, 80%)',
         width: '300px',
         height: '300px',

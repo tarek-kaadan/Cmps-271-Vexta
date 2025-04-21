@@ -6,7 +6,7 @@ const Home = () => {
   return (
     <>
       <ImageSlider />
-      <Recommendations />
+      {/* <Recommendations /> */}
       <GamesGenre />
     </>
   );

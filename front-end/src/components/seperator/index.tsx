@@ -17,12 +17,12 @@ const Seperator = ({ text, margintop }: SeperatorProps) => {
         style={{
           margin: 0,
           marginTop: margintop,
-          fontFamily: '"Jersey 10", sans-serif',
-          fontSize: "3.5rem",
-          background: "linear-gradient(to right, #ff7e5f, #feb47b)",
+          fontFamily: '"Poppins", "sans-serif"',
+          fontWeight: 600,
+          fontStyle: "bold",
           WebkitBackgroundClip: "text",
           backgroundClip: "text",
-          color: "transparent",
+          color: "rgba(0, 0, 0, 0.76)",
           textAlign: "center",
         }}
       >

@@ -58,10 +58,11 @@ const Header = () => {
       style={{
         position: 'sticky',
         top: 0,
-        backgroundColor: 'rgba(84, 84, 84, 0.3)',
+        background: 'linear-gradient(to right, #1A237E, #6A1B9A)',
         height: '80px',
         marginBottom: '80px',
         backdropFilter: 'blur(10px)',
+        boxShadow: '4px 4px 15px rgba(0, 0, 0, 0.2)'
       }}
     >
       <div

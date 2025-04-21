@@ -5,6 +5,8 @@ import Seperator from '../seperator';
 import Card from './Card/Card';
 import DropDownSelector from './dropdown/indec';
 import { genres } from '../../data/consts/genres';
+import { isButtonElement } from 'react-router-dom/dist/dom';
+import { FaSyncAlt } from 'react-icons/fa';
 
 interface Game {
   _id: string;
@@ -29,6 +31,8 @@ export default function GamesGenre() {
   const [selectedPlayers, setSelectedPlayers] = useState('Players');
   const [selectedRating, setSelectedRating] = useState('Rating');
   const [selectedDuration, setSelectedDuration] = useState('Duration');
+  const [visibleCount, setVisibleCount] = useState(0);
+  const [itemsPerStep, setItemsPerStep] = useState(0);
 
 
   const countries = [
@@ -113,7 +117,6 @@ export default function GamesGenre() {
 
   useEffect(() => {
     const endpoint = 'http://localhost:5001/api/games';
-
     axios
       .get(endpoint)
       .then((response) => {
@@ -124,7 +127,6 @@ export default function GamesGenre() {
         console.log(chalk.red("Couldn't fetch data:", error));
       });
   }, []);
-
 
   function parseDuration(str: string): [number, number] {
     const s = str.toLowerCase().trim();
@@ -200,9 +202,28 @@ export default function GamesGenre() {
     return matchesGenre && matchesCountry && matchesAgeGroup && matchesPlayers && matchesRating && matchesDuration;
   });
 
+  useEffect(() => {
+    const updateCount = () => {
+      let count;
+      if (window.innerWidth >= 1024) count = 10;      
+      else if (window.innerWidth >= 768) count = 6;   
+      else count = 4;                             
+  
+      setItemsPerStep(count);
+      setVisibleCount(count);
+    };
+
+    updateCount();
+    window.addEventListener("resize", updateCount);
+    return () => window.removeEventListener("resize", updateCount);
+  }, []);
+
   return (
     <>
-      <Seperator text={'Filter'} />
+    <section className='Filter-section' style={{
+      background: 'linear-gradient(to bottom,  #F5F5F5,  #EEEEEE)'
+    }}>
+    <Seperator text={'Explore Our Games Collection'} margintop={20}/>
       <div
         style={{
           display: 'flex',
@@ -267,7 +288,8 @@ export default function GamesGenre() {
         }}
       >
         {filteredGames.length > 0 ? (
-          filteredGames.map((game) => (
+        <>
+          {filteredGames.slice(0, visibleCount).map((game) => (
             <Card
               key={game._id}
               _id={game._id}
@@ -276,13 +298,31 @@ export default function GamesGenre() {
               image={game.overlayImage}
               rating={game.averageRating}
             />
-          ))
+          ))}
+        </>
         ) : (
           <p style={{ fontSize: '18px', textAlign: 'center', width: '100%' }}>
             No games found with these specific Criteria
           </p>
         )}
       </div>
+      {visibleCount < filteredGames.length && (
+        <div style={{display: "flex", justifyContent: "center", alignItems: "center", marginTop: "20px", paddingBottom: "40px"}}>
+          <button onClick={() => setVisibleCount((prev) => prev + itemsPerStep)} style={{
+          padding: '15px 30px 15px 30px',
+          backgroundColor: "#5736c9",
+          border: "none",
+          fontFamily: '"Poppins", "sans-serif"',
+          fontWeight: 500,
+          fontStyle: "bold",
+          color: "white",
+          borderRadius: '30px',
+          }}>Load More Games 
+          <FaSyncAlt className="text-lg" style={{marginLeft:"8px"}}/>
+          </button>
+        </div>
+        )}
+    </section>
     </>
   );
 }

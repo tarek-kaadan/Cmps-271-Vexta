@@ -3,9 +3,10 @@ import React, { useState, useEffect } from 'react';
 interface GradientCardProps {
   name: string;
   onClick: () => void;
+  LoggedIn: boolean;
 }
 
-const GradientCard: React.FC<GradientCardProps> = ({ name, onClick }) => {
+const GradientCard: React.FC<GradientCardProps> = ({ name, onClick, LoggedIn }) => {
   const [isMobile, setIsMobile] = useState<boolean>(false);
 
   useEffect(() => {
@@ -18,31 +19,55 @@ const GradientCard: React.FC<GradientCardProps> = ({ name, onClick }) => {
   return (
     <div
       style={{
-        backgroundColor: 'rgba(84, 84, 84, 0.8)',
-        padding: isMobile ? '20px' : '30px',
-        paddingLeft: isMobile ? '30px' : '50px',
-        borderRadius: '0.5rem',
+        backgroundColor: 'rgba(26, 26, 26, 0.42)',
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        gap: "30px",
         cursor: 'pointer',
-        width: isMobile ? '90%' : '20%',
-        margin: isMobile ? '10px auto' : undefined,
+        height: "100%",
+        width: '100%',
         boxSizing: 'border-box',
       }}
-      onClick={onClick}
+      //onClick={onClick}
     >
       <h1
         style={{
-          background: 'linear-gradient(to right, #ff7e5f, #feb47b)',
+          color: "rgba(255, 255, 255, 0.9)",
           WebkitBackgroundClip: 'text',
           backgroundClip: 'text',
-          color: 'transparent',
-          fontFamily: '"Jersey 10", sans-serif',
+          fontFamily: '"Poppins", "sans-serif"',
+          fontWeight: 600,
+          fontStyle: "bold",
           margin: 0,
-          fontSize: isMobile ? '1.5rem' : '2rem',
+          fontSize: isMobile ? '1.5rem' : '50px',
         }}
       >
         {name}
       </h1>
-      <p style={{ color: '#fff', fontSize: isMobile ? '0.9rem' : '1rem' }}>click to know more</p>
+      <div style={{
+        display: "flex",
+        flexDirection: "row",
+        gap: LoggedIn ? "20px" : "0px",
+        alignContent: "center",
+        alignItems: "center"
+      }}>
+        {LoggedIn && <button style={{
+          padding: '15px',
+          borderRadius: '30px'
+        }}>Click here</button>}
+        <button style={{
+          padding: '15px 30px 15px 30px',
+          background: "linear-gradient(to right, #FFC107, #FF7043)",
+          border: "none",
+          fontFamily: '"Poppins", "sans-serif"',
+          fontWeight: 400,
+          fontStyle: "bold",
+          color: "black",
+          borderRadius: '30px',
+        }}>Discover Games</button>
+      </div>
     </div>
   );
 };

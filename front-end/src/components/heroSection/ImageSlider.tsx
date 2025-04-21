@@ -3,6 +3,7 @@ import axios from "axios";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import BigImage from "./bigDiv/BigImage";
+import heroImage from '../../images/mancala.png';
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -17,23 +18,31 @@ interface Game {
 }
 
 const Slider: React.FC = () => {
-  const [games, setGames] = useState<Game[]>([]);
-
+  const [games, setGame] = useState<Game[]>([]);
   useEffect(() => {
+    const userId = localStorage.getItem("userId");
+    const token = localStorage.getItem("token");
+    console.log("Token:", token);
+    if (!userId || !token) return;
+
     axios
-      .get("http://localhost:5001/api/games")
-      .then((response) => {
-        const filtered = response.data.filter((game: Game) => game.sliderImage);
-        setGames(filtered);
+      .get(`http://localhost:5001/api/recommendations/${userId}`, {
+        headers: { token: `Bearer ${token}` },
+      })
+      .then((res) => {
+        setGame(res.data);
+        console.log("data fetched");
       })
       .catch((error) => {
-        console.error("Error fetching game data:", error);
+        console.log("could not fetch data:", error);
       });
   }, []);
 
   return (
-    <Swiper
-      style={{ top: "-75px", height: "600px" }}
+    <>
+    {games.length > 0 ? (
+      <Swiper
+      style={{ top:"-20px",height: "800px" }}
       modules={[Navigation, Pagination, Autoplay]}
       className="ImageSlider"
       spaceBetween={50}
@@ -55,7 +64,14 @@ const Slider: React.FC = () => {
           />
         </SwiperSlide>
       ))}
-    </Swiper>
+    </Swiper>) : (
+      <BigImage
+        name={"Discover our Big colletion of games"}
+        image={heroImage}
+        margintop="-10px"
+      />
+    )}
+    </>
   );
 };
 
