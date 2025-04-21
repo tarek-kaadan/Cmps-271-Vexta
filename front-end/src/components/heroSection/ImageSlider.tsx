@@ -42,7 +42,7 @@ const Slider: React.FC = () => {
     <>
     {games.length > 0 ? (
       <Swiper
-      style={{ top:"-20px",height: "800px" }}
+      style={{ marginTop:"-20px",height: "800px" }}
       modules={[Navigation, Pagination, Autoplay]}
       className="ImageSlider"
       spaceBetween={50}

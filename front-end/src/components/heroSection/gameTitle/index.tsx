@@ -25,7 +25,6 @@ const GradientCard: React.FC<GradientCardProps> = ({ name, onClick, LoggedIn }) 
         justifyContent: "center",
         alignItems: "center",
         gap: "30px",
-        cursor: 'pointer',
         height: "100%",
         width: '100%',
         boxSizing: 'border-box',
