@@ -1,6 +1,37 @@
 const express = require('express');
 const router = express.Router();
 const Game = require('../models/game');
+const fs = require("fs");
+const path = require("path");
+
+async function addSliderImageToGamesWithoutIt() {
+  const games = await Game.find({ sliderImage: { $exists: false } });
+  let updated = 0;
+
+  for (let game of games) {
+    if (!game.title) {
+      console.log(`⚠️ Skipping game with missing title (ID: ${game._id})`);
+      continue;
+    }
+
+    const fileName = `${game.title}.png`;
+    const imagePath = path.join(__dirname, "..", "..", "front-end", "public", "images", fileName);
+    const sliderPath = `/images/${fileName}`;
+
+    if (fs.existsSync(imagePath)) {
+      game.sliderImage = sliderPath;
+      await game.save();
+      updated++;
+      console.log(`✅ Added sliderImage for "${game.title}" → ${sliderPath}`);
+    } else {
+      console.log(`❌ No image found for "${game.title}"`);
+    }
+  }
+
+  console.log(`🎉 Done! Added sliderImage to ${updated} game(s).`);
+  return updated;
+}
+
 
 router.get('/', async (req, res) => {
   const allGames = await Game.find();
@@ -31,6 +62,16 @@ router.get('/AllGames', async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: 'Server error' });
+  }
+});
+
+router.get("/update-slider-images", async (req, res) => {
+  try {
+    const count = await addSliderImageToGamesWithoutIt();
+    res.json({ message: `Updated ${count} games with sliderImage.` });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Failed to update slider images." });
   }
 });
 

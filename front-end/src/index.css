@@ -388,3 +388,11 @@ header {
   margin-bottom: 20px;
   border: 3px solid #ddd;
 }
+
+.purple-button, .yellow-button{
+  transition: transform 0.3 ease-in-out ;
+}
+
+.purple-button:hover, .yellow-button:hover {
+  transform: scale(1.07);
+}
