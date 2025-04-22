@@ -14,6 +14,7 @@ import Home from './Pages/Home';
 import ChooseCategories from './components/categories';
 import ChangeProfilePicture from './components/profilePicture/ChangeProfilePictire';
 import BookmarkedGames from './components/filterSection/BookmarkedGames';
+import ProfilePage from './components/profilePage/ProfilePage';
 
 const App: React.FC = () => {
   return (
@@ -33,6 +34,7 @@ const App: React.FC = () => {
           <Route path="/About" element={<AboutPage />} />
           <Route path="/change-profile-picture" element={<ChangeProfilePicture />} />
           <Route path="/bookmarked" element={<BookmarkedGames />} />
+          <Route path="/profile/:userId" element={<ProfilePage />} />
         </Routes>
 
         <Footer />

@@ -136,3 +136,18 @@ exports.getBookmarks = async (req, res) => {
     res.status(500).json({ message: "Error fetching bookmarks", error: err.message });
   }
 };
+
+exports.getPublicProfile = async (req, res) => {
+  try {
+    const user = await User.findById(req.params.userId).select("username bookmarkedGames")
+      .populate("bookmarkedGames");
+    if (!user) return res.status(404).json({ message: "User not found" });
+
+    res.status(200).json({
+      username: user.username,
+      bookmarks: user.bookmarkedGames
+    });
+  } catch (err) {
+    res.status(500).json({ message: "Error fetching profile", error: err.message });
+  }
+};

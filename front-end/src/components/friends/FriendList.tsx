@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './FriendList.css';
@@ -58,7 +59,9 @@ const FriendList: React.FC = () => {
         {friends.length > 0 ? (
           friends.map((friend) => (
             <div key={friend._id} className="friend-card">
-              <span className="friend-email">{friend.username}</span>
+              <Link to={`/profile/${friend._id}`} className="friend-email">
+                {friend.username}
+              </Link>
               <button className="remove-button" onClick={() => handleRemoveFriend(friend._id)}>
                 ❌ Remove Friend
               </button>

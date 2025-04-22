@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './FriendSearch.css';
@@ -104,7 +105,9 @@ const FriendSearch: React.FC = () => {
           .filter((u) => u._id !== currentUserId)
           .map((user) => (
             <div key={user._id} className="friend-card">
-              <span className="friend-email">{user.username}</span>
+              <Link to={`/profile/${user._id}`} className="friend-email">
+                {user.username}
+              </Link>
               {!friends.has(user._id) ? (
                 <button className="add-button" onClick={() => handleAddFriend(user._id)}>
                   ➕ Add Friend
