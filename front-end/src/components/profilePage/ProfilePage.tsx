@@ -28,27 +28,24 @@ export default function ProfilePage() {
 
   return (
     <div className="profile-container">
-      <div className="profile-card">
-        <h1 className="profile-username">{username}'s Profile</h1>
-        <h2 className="bookmarked-title">🎮 Bookmarked Games</h2>
-        
-        {bookmarks.length === 0 ? (
-          <p className="no-bookmarks">No bookmarks yet. 📭</p>
-        ) : (
-          <div className="bookmarked-games-list">
-            {bookmarks.map(game => (
-              <Card
-                key={game._id}
-                _id={game._id}
-                title={game.title}
-                description={game.description}
-                image={game.overlayImage}
-                rating={game.averageRating}
-              />
-            ))}
-          </div>
-        )}
-      </div>
+      <h1 className="profile-header">{username}'s Profile</h1>
+      <h2 className="bookmark-title">Bookmarked Games</h2>
+      {bookmarks.length === 0 ? (
+        <p className="no-bookmarks">No bookmarks yet.</p>
+      ) : (
+        <div className="bookmark-grid">
+          {bookmarks.map(game => (
+            <Card
+              key={game._id}
+              _id={game._id}
+              title={game.title}
+              description={game.description}
+              image={game.overlayImage}
+              rating={game.averageRating}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 }

@@ -39,7 +39,7 @@ const AuthSection = ({
           {dropdownOpen && (
             <div className="dropdown-menu">
               <Link to="/friends" onClick={() => setDropdownOpen(false)}>
-                👥 Friends
+                Friends
               </Link>
               <Link to="/bookmarked" onClick={() => setDropdownOpen(false)}>
                 Bookmarked

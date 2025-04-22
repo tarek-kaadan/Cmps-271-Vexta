@@ -1,11 +1,18 @@
 .profile-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 50px;
-    padding: 20px;
-  }
-  
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #6A1B9A;
+  border-radius: 12px;
+  color: #fff;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+.profile-header {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #ff7e5f;
+}
   .profile-card {
     background: #2c2c2c;
     color: #fff;
@@ -33,6 +40,7 @@
   }
   
   .no-bookmarks {
+    text-align: center;
     font-size: 1.2rem;
     color: #ccc;
   }
@@ -44,3 +52,17 @@
     justify-content: center;
   }
   
+  .bookmark-title {
+    font-size: 1.8rem;
+    text-align: center;
+    margin-bottom: 30px;
+    color: #ffd700;
+  }
+
+  .bookmark-grid {
+  display: grid;
+  color: #000000;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 25px;
+  justify-items: center;
+}
