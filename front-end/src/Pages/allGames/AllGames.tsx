@@ -6,6 +6,7 @@ import SearchBar from '../../components/seatchBar';
 import GameList from '../../components/gamesList';
 import PaginationControls from '../../components/PaginationControls';
 import Seperator from '../../components/seperator';
+import { API_BASE_URL } from "../../config";
 
 type Game = {
   id: string;

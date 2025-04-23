@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Card from "../filterSection/Card/Card";
 import './ProfilePage.css';
-
+import { API_BASE_URL } from '../../config'; 
 interface Game {
   _id: string;
   title: string;
@@ -18,7 +18,7 @@ export default function ProfilePage() {
   const [bookmarks, setBookmarks] = useState<Game[]>([]);
 
   useEffect(() => {
-    axios.get(`http://localhost:5001/api/users/${userId}/profile`)
+    axios.get(`${API_BASE_URL}${userId}/profile`)
       .then(res => {
         setUsername(res.data.username);
         setBookmarks(res.data.bookmarks);

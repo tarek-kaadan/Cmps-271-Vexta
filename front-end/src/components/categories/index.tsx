@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 // import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-
-const categories = [
+import { API_BASE_URL } from '../../config'; 
+const
+ categories = [
   'Board Game',
   'Physical Game',
   'Team Sport',
@@ -35,7 +36,7 @@ const ChooseCategories: React.FC = () => {
     if (!userId) return;
 
     try {
-      await axios.post('http://localhost:5001/api/users/preferences', {
+      await axios.post(`${API_BASE_URL}/api/users/preferences`, {
         userId,
         categories: selectedCategories,
       });

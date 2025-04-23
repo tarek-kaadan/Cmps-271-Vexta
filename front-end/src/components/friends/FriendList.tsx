@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './FriendList.css';
+import { API_BASE_URL } from '../../config'; 
 
 interface User {
   _id: string;
@@ -18,7 +19,7 @@ const FriendList: React.FC = () => {
       try {
         if (!currentUserId) return;
         const response = await axios.get(
-          `http://localhost:5001/api/users/${currentUserId}/friends`,
+          `${API_BASE_URL}${currentUserId}/friends`,
         );
         setFriends(response.data);
       } catch (err) {

@@ -3,6 +3,7 @@ import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { API_BASE_URL } from '../../config'; 
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -18,7 +19,7 @@ export default function Recommendation() {
     if (!userId || !token) return;
 
     axios
-      .get(`http://localhost:5001/api/recommendations/${userId}`, {
+      .get(`${API_BASE_URL}${userId}`, {
         headers: { token: `Bearer ${token}` },
       })
       .then((res) => {

@@ -8,7 +8,7 @@ import AuthHeading from "./authHeading";
 import AuthWrapper from "./authwrapper";
 import AuthMessage from "./message";
 import AuthButton from "./submitButton";
-
+import { API_BASE_URL } from '../../config';
 const LoginPage: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -23,7 +23,7 @@ const LoginPage: React.FC = () => {
     setSuccess("");
 
     try {
-      const res = await axios.post("http://localhost:5001/api/auth/login", {
+      const res = await axios.post(`${API_BASE_URL}/api/auth/login`, {
         email,
         password,
       });

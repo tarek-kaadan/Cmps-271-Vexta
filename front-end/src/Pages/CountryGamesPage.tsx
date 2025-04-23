@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Card from "../components/filterSection/Card/Card";
-
+import { API_BASE_URL } from ".././config";
 interface Game {
   _id: string;
   title: string;
@@ -17,7 +17,7 @@ export default function CountryGamesPage() {
   const [games, setGames] = useState<Game[]>([]);
 
   useEffect(() => {
-    axios.get("http://localhost:5001/api/games").then((res) => {
+    axios.get(`${API_BASE_URL}/api/games`).then((res) => {
       setGames(res.data);
     });
   }, []);

@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './FriendSearch.css';
+import { API_BASE_URL } from '../../config'; 
 
 interface User {
   _id: string;
@@ -20,7 +21,7 @@ const FriendSearch: React.FC = () => {
         if (!currentUserId) return;
 
         // 1. Get all users
-        const usersResponse = await axios.get('http://localhost:5001/api/users');
+        const usersResponse = await axios.get(`${API_BASE_URL}/api/users`);
         const uniqueUsers = Array.from(
           new Map(usersResponse.data.map((u: User) => [u._id, u])).values(),
         ) as User[];

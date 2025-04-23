@@ -4,6 +4,7 @@ import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import BigImage from "./bigDiv/BigImage";
 import heroImage from "/images/Mancala.png";
+import { API_BASE_URL } from '../../config'; 
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -26,7 +27,7 @@ const Slider: React.FC = () => {
     if (!userId || !token) return;
 
     axios
-      .get(`http://localhost:5001/api/recommendations/${userId}`, {
+      .get(`${API_BASE_URL}${userId}`, {
         headers: { token: `Bearer ${token}` },
       })
       .then((res) => {

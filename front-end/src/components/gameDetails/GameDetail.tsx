@@ -4,6 +4,7 @@ import axios from "axios";
 import { Star } from "lucide-react";
 import Header from "../header/Header";
 import "./gameCard.css";
+import { API_BASE_URL } from '../../config'; 
 
 interface Game {
   id: number;
@@ -37,7 +38,7 @@ export default function GameDetail() {
     const fetchGame = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:5001/api/games/title/${title}`
+          `${API_BASE_URL}${title}`
         );
         setGame(res.data);
       } catch (error) {

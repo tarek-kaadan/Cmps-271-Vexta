@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
+import { API_BASE_URL } from '../../config'; 
 const ChangeProfilePicture: React.FC = () => {
   const [image, setImage] = useState<File | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
@@ -9,6 +9,7 @@ const ChangeProfilePicture: React.FC = () => {
   const [message, setMessage] = useState<string>("");
   const navigate = useNavigate();
   const userId = localStorage.getItem("userId");
+  
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -30,7 +31,7 @@ const ChangeProfilePicture: React.FC = () => {
   
     try {
       const res = await axios.post(
-        `http://localhost:5001/api/users/${userId}/upload-profile-picture`,
+        `${API_BASE_URL}/api/users/${userId}/upload-profile-picture`,
         formData,
         {
           headers: {

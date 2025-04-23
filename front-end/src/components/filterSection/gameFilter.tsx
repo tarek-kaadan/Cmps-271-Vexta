@@ -7,6 +7,7 @@ import DropDownSelector from "./dropdown/indec";
 import { genres } from "../../data/consts/genres";
 import { isButtonElement } from "react-router-dom/dist/dom";
 import { FaSyncAlt } from "react-icons/fa";
+import { API_BASE_URL } from '../../config'; 
 
 interface Game {
   _id: string;
@@ -97,7 +98,7 @@ export default function GamesGenre() {
   };
 
   useEffect(() => {
-    const endpoint = "http://localhost:5001/api/games";
+    const endpoint = `${API_BASE_URL}/api/games`;
     axios
       .get(endpoint)
       .then((response) => {

@@ -3,7 +3,7 @@ import axios from "axios";
 import Card from "../filterSection/Card/Card"; // Adjust this path if needed
 import Game from "../../data/interfaces/GameInterface"; // Adjust if you're using a Game interface
 import Seperator from "../seperator";
-
+import { API_BASE_URL } from '../../config'; 
 const BookmarkedGames: React.FC = () => {
   const [games, setGames] = useState<Game[]>([]);
   const userId = localStorage.getItem("userId");
@@ -11,7 +11,7 @@ const BookmarkedGames: React.FC = () => {
   useEffect(() => {
     const fetchBookmarks = async () => {
       try {
-        const res = await axios.get(`http://localhost:5001/api/users/${userId}/bookmarks`);
+        const res = await axios.get(`${API_BASE_URL}${userId}/bookmarks`);
         setGames(res.data);
       } catch (err) {
         console.error("Failed to fetch bookmarks:", err);

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-
+import { API_BASE_URL } from '../../../config';
 interface Props {
   _id: string;
   title: string;
@@ -31,7 +31,7 @@ export default function Card({ title, description, image, rating, _id }: Props) 
   const toggleBookmark = async (e: React.MouseEvent) => {
     e.preventDefault(); // Prevent card navigation
     try {
-      await axios.post(`http://localhost:5001/api/users/${userId}/bookmark`, {
+      await axios.post(`${API_BASE_URL}${userId}/bookmark`, {
         gameId: _id,
       });
       setBookmarked((prev) => !prev);

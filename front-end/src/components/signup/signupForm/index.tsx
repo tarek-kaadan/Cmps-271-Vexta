@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import PasswordInput from './subcomponents/passwordInput';
 import SignupInput from './subcomponents/signupInput';
-
+import { API_BASE_URL } from '../../../config'; 
 const SignupForm: React.FC = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -30,7 +30,7 @@ const SignupForm: React.FC = () => {
     }
 
     try {
-      const response = await axios.post('http://localhost:5001/api/auth/signup', {
+      const response = await axios.post(`${API_BASE_URL}/api/auth/signup`, {
         username,
         email,
         password,

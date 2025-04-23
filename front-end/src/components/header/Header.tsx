@@ -4,7 +4,7 @@ import VextaLogo from '../VextaIcon';
 import DesktopNav from './headerSubComponents/navigationBar';
 import AuthSection from './headerSubComponents/headerRight';
 import MobileMenu from './headerSubComponents/headerRight/mobileMenu';
-
+import { API_BASE_URL } from '../../config'; 
 const Header = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useState<string | null>(null);
@@ -18,13 +18,12 @@ const Header = () => {
     const storedUsername = localStorage.getItem('username');
     const storedProfilePicture = localStorage.getItem("profilePicture");
 
-    // console.log("🧠 Stored profile picture:", storedProfilePicture);
     
     setUsername(storedUsername || null);
     if (storedProfilePicture) {
-      setProfilePicture(`http://localhost:5001/${storedProfilePicture}`);
+      setProfilePicture(`${API_BASE_URL}${storedProfilePicture}`);
     } else {
-      setProfilePicture("http://localhost:5001/uploads/default.jpg");
+      setProfilePicture(`${API_BASE_URL}/uploads/default.jpg`);
     }
   }, []);
 
