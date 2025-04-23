@@ -14,6 +14,7 @@ interface Game {
   numberOfPlayers: number;
   description: string;
   Video?: string;
+  Embedded?: string;
   fullDescription: string;
   averageRating: number;
 }
@@ -142,6 +143,24 @@ export default function GameDetail() {
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
               ></iframe>
+            </div>
+          )}
+          {game.Embedded && (
+            <div
+              className="game-container"
+              style={{
+                borderRadius: "30px",
+                overflow: "hidden",
+                marginTop: "30px",
+              }}
+            >
+              <iframe
+                src={game.Embedded}
+                style={{ width: "100%", height: "500px" }}
+                frameBorder="0"
+                allow="gamepad *;"
+              ></iframe>
+              s
             </div>
           )}
         </main>

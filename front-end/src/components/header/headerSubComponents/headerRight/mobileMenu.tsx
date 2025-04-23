@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom';
-import { RefObject } from 'react';
+import { Link } from "react-router-dom";
+import { RefObject } from "react";
 
 interface MobileMenuProps {
   isOpen: boolean;
@@ -28,13 +28,18 @@ export default function MobileMenu({
             </Link>
           </li>
           <li>
-            <Link to="/about" onClick={() => setIsOpen(false)}>
+            <Link to="/About" onClick={() => setIsOpen(false)}>
               About
             </Link>
           </li>
           <li>
             <Link to="/recommendations" onClick={() => setIsOpen(false)}>
               All Games
+            </Link>
+          </li>
+          <li>
+            <Link to="/Map" onClick={() => setIsOpen(false)}>
+              World Map
             </Link>
           </li>
         </ul>

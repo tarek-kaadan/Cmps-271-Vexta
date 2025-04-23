@@ -232,12 +232,12 @@ export default function GamesGenre() {
             title={"Genre"}
           />
 
-          <DropDownSelector
+          {/* <DropDownSelector
             selectedItem={selectedCountry}
             list={countries}
             setSelectedItem={(item) => setSelectedCountry(item)}
             title={"Region"}
-          />
+          /> */}
 
           <DropDownSelector
             selectedItem={selectedAgeGroup}
