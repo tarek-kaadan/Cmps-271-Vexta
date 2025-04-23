@@ -1,4 +1,3 @@
-import { BsDisplay } from "react-icons/bs";
 import bgImage from "/images/Background.png";
 import styled from "styled-components";
 

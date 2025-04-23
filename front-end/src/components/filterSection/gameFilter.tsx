@@ -5,7 +5,6 @@ import Seperator from "../seperator";
 import Card from "./Card/Card";
 import DropDownSelector from "./dropdown/indec";
 import { genres } from "../../data/consts/genres";
-import { isButtonElement } from "react-router-dom/dist/dom";
 import { FaSyncAlt } from "react-icons/fa";
 import { API_BASE_URL } from '../../config'; 
 
@@ -27,7 +26,7 @@ interface Game {
 export default function GamesGenre() {
   const [games, setGame] = useState<Game[]>([]);
   const [selectedGenre, setSelectedGenres] = useState("Genre");
-  const [selectedCountry, setSelectedCountry] = useState("Country");
+  const [selectedCountry] = useState("Country");
   const [selectedAgeGroup, setSelectedAgeGroup] = useState("Age Group");
   const [selectedPlayers, setSelectedPlayers] = useState("Players");
   const [selectedRating, setSelectedRating] = useState("Rating");
@@ -35,34 +34,34 @@ export default function GamesGenre() {
   const [visibleCount, setVisibleCount] = useState(0);
   const [itemsPerStep, setItemsPerStep] = useState(0);
 
-  const countries = [
-    "All",
-    "Africa",
-    "Iran",
-    "Philippines",
-    "India",
-    "Iraq",
-    "Switzerland",
-    "China",
-    "Brazil",
-    "Afghanistan",
-    "Latin America",
-    "Sri Lanka",
-    "South Korea",
-    "Morocco",
-    "Kazakhstan",
-    "Malaysia",
-    "Greece",
-    "United Kingdom",
-    "Uganda",
-    "Egypt",
-    "Thailand",
-    "New Zealand",
-    "USA",
-    "Sweden",
-    "Russia",
-    "France",
-  ];
+  // const countries = [
+  //   "All",
+  //   "Africa",
+  //   "Iran",
+  //   "Philippines",
+  //   "India",
+  //   "Iraq",
+  //   "Switzerland",
+  //   "China",
+  //   "Brazil",
+  //   "Afghanistan",
+  //   "Latin America",
+  //   "Sri Lanka",
+  //   "South Korea",
+  //   "Morocco",
+  //   "Kazakhstan",
+  //   "Malaysia",
+  //   "Greece",
+  //   "United Kingdom",
+  //   "Uganda",
+  //   "Egypt",
+  //   "Thailand",
+  //   "New Zealand",
+  //   "USA",
+  //   "Sweden",
+  //   "Russia",
+  //   "France",
+  // ];
 
   const ageGroupOptions = [
     "All",

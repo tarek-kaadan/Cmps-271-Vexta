@@ -2,7 +2,6 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Star } from "lucide-react";
-import Header from "../header/Header";
 import "./gameCard.css";
 import { API_BASE_URL } from '../../config'; 
 

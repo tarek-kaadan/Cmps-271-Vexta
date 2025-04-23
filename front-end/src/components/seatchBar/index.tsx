@@ -1,5 +1,3 @@
-import React, { useState } from "react";
-
 interface Props {
   search: string;
   onChange: (value: string) => void;

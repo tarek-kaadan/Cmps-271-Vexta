@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import { API_BASE_URL } from '../../config'; 
 const ChangeProfilePicture: React.FC = () => {
   const [image, setImage] = useState<File | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
   const [uploadedImagePath, setUploadedImagePath] = useState<string | null>(null);
   const [message, setMessage] = useState<string>("");
-  const navigate = useNavigate();
   const userId = localStorage.getItem("userId");
   
 
