@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Card from "../filterSection/Card/Card"; // Adjust this path if needed
-import Game from "../../data/interfaces/GameInterface"; // Adjust if you're using a Game interface
+import Card from "../filterSection/Card/Card";
+import Game from "../../data/interfaces/GameInterface";
 import Seperator from "../seperator";
 import { API_BASE_URL } from '../../config'; 
 const BookmarkedGames: React.FC = () => {

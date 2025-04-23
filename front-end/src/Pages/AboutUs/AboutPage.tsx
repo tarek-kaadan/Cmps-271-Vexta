@@ -12,7 +12,6 @@ const AboutPage = () => {
               around the globe. Whether you're looking for strategic board games or engaging outdoor
               activities, Vexta is the place to explore and discover!
             </p>
-n 
             <p>
               Vexta was developed as part of the CMPS 271-Software Engineering course at the
               American University of Beirut (AUB) during the Spring 2025 semester. The project was

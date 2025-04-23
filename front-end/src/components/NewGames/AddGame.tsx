@@ -53,31 +53,31 @@ export default function AddGame() {
       <h2>Add a New Game</h2>
       <form className="add-game-form" onSubmit={handleSubmit}>
         {[
-          "title", "description", "category", "originCountry", "numberOfPlayers", 
-          "culture", "averageRating", "ageGroup", "estimatedDuration", 
-          "culturalContext", "fullDescription", "overlayImage", "sliderImage (optional)", "video (optional)", "Embedded (optional)"
+            "title", "description", "category", "originCountry", "numberOfPlayers", 
+            "culture", "averageRating", "ageGroup", "estimatedDuration", 
+            "culturalContext", "fullDescription", "overlayImage", "sliderImage", "video", "Embedded"
         ].map((field) => (
-          <div key={field}>
+            <div key={field}>
             {["description", "fullDescription", "culturalContext"].includes(field) ? (
-              <textarea
+                <textarea
                 name={field}
-                placeholder={field}
+                placeholder={`${field}${["sliderImage", "video", "Embedded"].includes(field) ? " (optional)" : ""}`}
                 value={(formData as any)[field]}
                 onChange={handleChange}
-              />
+                />
             ) : (
-              <input
+                <input
                 type="text"
                 name={field}
-                placeholder={field}
+                placeholder={`${field}${["sliderImage", "video", "Embedded"].includes(field) ? " (optional)" : ""}`}
                 value={(formData as any)[field]}
                 onChange={handleChange}
-              />
+                />
             )}
-          </div>
+            </div>
         ))}
         <button type="submit">Submit Game</button>
-      </form>
+    </form>
     </div>
   );
 }
