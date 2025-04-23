@@ -17,6 +17,9 @@ import BookmarkedGames from "./components/filterSection/BookmarkedGames";
 import ProfilePage from "./components/profilePage/ProfilePage";
 import Map from "./Pages/Map";
 import CountryGamesPage from "./Pages/CountryGamesPage";
+import PinEntry from "./components/NewGames/PinEntry";
+import AddGame from "./components/NewGames/AddGame";
+
 const App: React.FC = () => {
   return (
     <>
@@ -41,6 +44,8 @@ const App: React.FC = () => {
           />
           <Route path="/bookmarked" element={<BookmarkedGames />} />
           <Route path="/profile/:userId" element={<ProfilePage />} />
+          <Route path="/enter-pin" element={<PinEntry />} />
+          <Route path="/add-game" element={<AddGame />} />
         </Routes>
 
         <Footer />

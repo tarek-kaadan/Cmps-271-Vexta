@@ -1,0 +1,45 @@
+.pin-entry-container {
+    text-align: center;
+    margin-top: 150px;
+  }
+  
+  .pin-entry-container h2 {
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .pin-entry-container input {
+    padding: 12px;
+    font-size: 18px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    width: 200px;
+    transition: border-color 0.3s;
+  }
+  
+  .pin-entry-container input:focus {
+    border-color: #7b2cbf;
+    outline: none;
+  }
+  
+  .pin-entry-container button {
+    margin-left: 10px;
+    padding: 12px 25px;
+    background-color: #7b2cbf;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .pin-entry-container button:hover {
+    background-color: #5a189a;
+  }
+  
+  .pin-entry-container p {
+    color: red;
+    margin-top: 15px;
+  }
+  

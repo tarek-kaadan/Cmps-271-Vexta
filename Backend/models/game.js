@@ -63,6 +63,10 @@ const games = new Schema({
     type: String,
     required: false,
   },
+  Embedded: {
+    type: String,
+    required: false,
+  },
   createdAt: {
     type: Date,
     default: Date.now,

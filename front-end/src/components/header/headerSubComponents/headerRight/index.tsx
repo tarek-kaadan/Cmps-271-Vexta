@@ -47,6 +47,7 @@ const AuthSection = ({
               <Link to="/change-profile-picture" onClick={() => setDropdownOpen(false)}>
                   Change Picture
               </Link>
+              <Link to="/enter-pin">Add New Game</Link>
               <button onClick={handleLogout}>Log out</button>
             </div>
           )}

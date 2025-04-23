@@ -102,4 +102,14 @@ router.get('/:id', async (req, res) => {
   }
 });
 
+router.post("/", async (req, res) => {
+  try {
+    const newGame = new Game(req.body);
+    await newGame.save();
+    res.status(201).json({ message: "Game added successfully!" });
+  } catch (err) {
+    res.status(500).json({ message: "Error adding game", error: err });
+  }
+});
+
 module.exports = router;
