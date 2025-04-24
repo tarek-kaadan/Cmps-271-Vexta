@@ -37,7 +37,7 @@ export default function GameDetail() {
     const fetchGame = async () => {
       try {
         const res = await axios.get(
-          `${API_BASE_URL}${title}`
+          `${API_BASE_URL}/api/games/title/${title}`
         );
         setGame(res.data);
       } catch (error) {
