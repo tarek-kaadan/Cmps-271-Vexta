@@ -27,7 +27,7 @@ const Slider: React.FC = () => {
     if (!userId || !token) return;
 
     axios
-      .get(`${API_BASE_URL}${userId}`, {
+      .get(`${API_BASE_URL}/api/recommendations${userId}`, {
         headers: { token: `Bearer ${token}` },
       })
       .then((res) => {
