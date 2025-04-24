@@ -29,7 +29,7 @@ const FriendSearch: React.FC = () => {
 
         // 2. Get current user's friends
         const friendsResponse = await axios.get(
-          `http://localhost:5001/api/users/${currentUserId}/friends`,
+          `${API_BASE_URL}/api/users/${currentUserId}/friends`,
         );
         const friendIds = friendsResponse.data.map((f: User) => f._id);
         setFriends(new Set(friendIds));
@@ -49,7 +49,7 @@ const FriendSearch: React.FC = () => {
       }
 
       const response = await axios.post(
-        `http://localhost:5001/api/users/${currentUserId}/add-friend`,
+        `${API_BASE_URL}/api/users/${currentUserId}/add-friend`,
         {
           friendId,
         },
@@ -71,7 +71,7 @@ const FriendSearch: React.FC = () => {
       }
 
       const response = await axios.post(
-        `http://localhost:5001/api/users/${currentUserId}/remove-friend`,
+        `${API_BASE_URL}/api/users/${currentUserId}/remove-friend`,
         {
           friendId,
         },
