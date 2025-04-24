@@ -3,7 +3,7 @@ import axios from "axios";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import BigImage from "./bigDiv/BigImage";
-import heroImage from "/images/Mancala.png";
+import heroImage from "/images/Home.png";
 import { API_BASE_URL } from '../../config'; 
 
 import "swiper/css";

@@ -1,10 +1,6 @@
 .card {
-  max-width: 90%;
-  width: 300px;
-  height: 300px;
   box-shadow: 5px 5px 5px hsla(0, 0%, 0%, 0.056) !important;
   border-radius: 10px;
-  margin: 20px auto;
   transition: transform 0.3s ease-in-out;
 }
 
@@ -340,3 +336,16 @@ header {
 .purple-button:hover, .yellow-button:hover {
   transform: scale(1.07);
 }
+
+@keyframes glow {
+    0% {
+      text-shadow: 0 0 5px #414141, 0 0 10px #ffffffb0, 0 0 15px rgba(83, 83, 83, 0.377);
+    }
+    50% {
+      text-shadow: 0 0 20px #414141, 0 0 30px #ffffffb0, 0 0 40px rgba(83, 83, 83, 0.377);
+    }
+    100% {
+      text-shadow: 0 0 5px #414141, 0 0 10px #ffffffb0, 0 0 15px rgba(83, 83, 83, 0.377);
+    }
+  }
+  

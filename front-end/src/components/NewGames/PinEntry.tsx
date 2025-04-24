@@ -29,6 +29,7 @@ export default function PinEntry() {
         <button type="submit">Submit</button>
       </form>
       {error && <p>{error}</p>}
+      <div style={{marginBottom: "500px"}}></div>
     </div>
   );
 }

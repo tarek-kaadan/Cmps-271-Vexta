@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { FaArrowDown } from "react-icons/fa";
 
 interface GradientCardProps {
   name: string;
@@ -44,6 +45,7 @@ const GradientCard: React.FC<GradientCardProps> = ({
           fontStyle: "bold",
           margin: 0,
           fontSize: isMobile ? "1.5rem" : "50px",
+          animation: "glow 1.5s ease-in-out infinite"
         }}
       >
         {name}
@@ -76,24 +78,27 @@ const GradientCard: React.FC<GradientCardProps> = ({
           </button>
         )}
         <a
-          href="#Filter-section"
-          className="yellow-button"
-          style={{
-            padding: "15px 30px",
-            background: "linear-gradient(to right, #FFC107, #FF7043)",
-            border: "none",
-            fontFamily: '"Poppins", "sans-serif"',
-            fontWeight: 400,
-            fontStyle: "normal",
-            color: "white",
-            borderRadius: "30px",
-            textDecoration: "none",
-            display: "inline-block",
-            textAlign: "center",
-          }}
-        >
-          Discover Games
-        </a>
+            href="#Filter-section"
+            className="yellow-button"
+            style={{
+             padding: "15px 30px",
+             background: "linear-gradient(to right, #FFC107, #FF7043)",
+             border: "none",
+             fontFamily: '"Poppins", "sans-serif"',
+             fontWeight: 400,
+             fontStyle: "normal",
+             color: "white",
+             borderRadius: "30px",
+             textDecoration: "none",
+             display: "flex",            
+             alignItems: "center",       
+             justifyContent: "center",   
+             gap: "8px"                   
+           }}
+         >
+           Discover Games
+           <FaArrowDown />
+         </a>
       </div>
     </div>
   );
