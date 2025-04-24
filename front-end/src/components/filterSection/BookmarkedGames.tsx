@@ -11,7 +11,7 @@ const BookmarkedGames: React.FC = () => {
   useEffect(() => {
     const fetchBookmarks = async () => {
       try {
-        const res = await axios.get(`${API_BASE_URL}${userId}/bookmarks`);
+        const res = await axios.get(`${API_BASE_URL}/api/${userId}/bookmarks`);
         setGames(res.data);
       } catch (err) {
         console.error("Failed to fetch bookmarks:", err);
