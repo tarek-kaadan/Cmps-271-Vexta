@@ -18,7 +18,7 @@ export default function ProfilePage() {
   const [bookmarks, setBookmarks] = useState<Game[]>([]);
 
   useEffect(() => {
-    axios.get(`${API_BASE_URL}${userId}/profile`)
+    axios.get(`${API_BASE_URL}/api/users/${userId}/profile`)
       .then(res => {
         setUsername(res.data.username);
         setBookmarks(res.data.bookmarks);

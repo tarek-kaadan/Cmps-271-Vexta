@@ -19,7 +19,7 @@ const FriendList: React.FC = () => {
       try {
         if (!currentUserId) return;
         const response = await axios.get(
-          `${API_BASE_URL}${currentUserId}/friends`,
+          `${API_BASE_URL}/api/users/${currentUserId}/friends`,
         );
         setFriends(response.data);
       } catch (err) {
@@ -38,7 +38,7 @@ const FriendList: React.FC = () => {
       }
 
       const response = await axios.post(
-        `http://localhost:5001/api/users/${currentUserId}/remove-friend`,
+        `${API_BASE_URL}/api/users/${currentUserId}/remove-friend`,
         {
           friendId,
         },
