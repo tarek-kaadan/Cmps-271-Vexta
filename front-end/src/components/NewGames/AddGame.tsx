@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import './AddGame.css';
+import { API_BASE_URL } from '../../config'; 
 
 export default function AddGame() {
   const [formData, setFormData] = useState({
@@ -40,7 +41,7 @@ export default function AddGame() {
     delete (payload as any).video;
   
     try {
-      await axios.post("http://localhost:5001/api/games", payload);
+      await axios.post(`${API_BASE_URL}/api/games`, payload);
       alert("Game submitted successfully!");
     } catch (err) {
       console.error("Failed to submit game:", err);
