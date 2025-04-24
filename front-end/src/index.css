@@ -142,7 +142,7 @@ header {
   font-weight: bold;
 }
 .desktop-nav a:hover {
-  color: black;
+  color: #FFBF09;
 }
 .right-section {
   display: flex;

@@ -20,7 +20,7 @@ export default function Card({ title, description, image, rating, _id }: Props) 
     if (!userId) return;
 
     axios
-      .get(`http://localhost:5001/api/users/${userId}/bookmarks`)
+      .get(`${API_BASE_URL}/api/users/${userId}/bookmarks`)
       .then((res) => {
         const isBookmarked = res.data.some((game: any) => game._id === _id);
         setBookmarked(isBookmarked);
@@ -31,7 +31,7 @@ export default function Card({ title, description, image, rating, _id }: Props) 
   const toggleBookmark = async (e: React.MouseEvent) => {
     e.preventDefault(); // Prevent card navigation
     try {
-      await axios.post(`${API_BASE_URL}${userId}/bookmark`, {
+      await axios.post(`${API_BASE_URL}/api/users/${userId}/bookmark`, {
         gameId: _id,
       });
       setBookmarked((prev) => !prev);
