@@ -1,5 +1,4 @@
 .card {
-  border: 1px solid hsl(0, 0%, 80%);
   max-width: 90%;
   width: 300px;
   height: 300px;
@@ -68,46 +67,6 @@
   transform: scale(1.05);
 }
 
-.card h2 {
-  padding: 10px;
-  font-size: 150%;
-  text-align: left;
-  margin: 0;
-}
-
-.card p {
-  padding-bottom: 10px;
-  padding-right: 10px;
-  padding-left: 10px;
-  text-align: left;
-  margin: 0;
-}
-
-.card img {
-  height: 150px;
-  width: 100%;
-  border-radius: 9px 9px 0px 0px;
-  display: block;
-  object-fit: cover;
-}
-
-.rating {
-  position: absolute;
-  top: 160px;
-  right: 10px;
-  height: 30px;
-  width: 75px;
-  border: 1.5px solid hsl(0, 0%, 80%);
-  box-shadow: 2px 2px 2px hsla(0, 0%, 0%, 0.056) !important;
-  border-radius: 9px;
-  background: white;
-  display: flex;
-  align-items: center;
-  font-weight: bold;
-}
-.rating p {
-  padding-top: 7px;
-}
 
 header {
   position: sticky;
@@ -271,12 +230,6 @@ header {
 }
 
 @media (max-width: 768px) {
-  .card {
-    width: 80%;
-  }
-  .card h2 {
-    font-size: 140%;
-  }
   .desktop-nav,
   .right-section {
     display: none;
@@ -297,12 +250,6 @@ header {
   }
 }
 @media (max-width: 700px) {
-  .card {
-    width: 80%;
-  }
-  .card h2 {
-    font-size: 120%;
-  }
   .desktop-nav,
   .right-section {
     display: none;
@@ -318,9 +265,6 @@ header {
 }
 
 @media (max-width: 638px) {
-  .card {
-    width: 60%;
-  }
   .desktop-nav,
   .right-section {
     display: none;

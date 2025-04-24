@@ -42,6 +42,7 @@ export default function Card({ title, description, image, rating, _id }: Props) 
 
   return (
     <Link
+    className='card'
       to={`/games/title/${title}`}
       style={{
         textDecoration: 'none',
@@ -100,6 +101,9 @@ export default function Card({ title, description, image, rating, _id }: Props) 
           paddingLeft: '10px',
           paddingTop: '10px',
           fontSize: '150%',
+          fontFamily: '"Poppins", "sans-serif"',
+          fontWeight: 500,
+          fontStyle: "bold",
           textAlign: 'left',
         }}
       >
@@ -127,6 +131,9 @@ export default function Card({ title, description, image, rating, _id }: Props) 
         <p
           style={{
             margin: 0,
+            fontFamily: '"Poppins", "sans-serif"',
+            fontWeight: 500,
+            fontStyle: "bold",
             fontSize: '13px',
             lineHeight: '1',
             paddingRight: '10px'
@@ -141,6 +148,9 @@ export default function Card({ title, description, image, rating, _id }: Props) 
           paddingLeft: '10px',
           paddingRight: '10px',
           textAlign: 'left',
+          fontWeight: 400,
+          fontStyle: "normal",
+          fontSize: '15px',
         }}
       >
         {description}
